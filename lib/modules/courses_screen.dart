@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:school_app/shared/widgets/reusable_calender_date.dart';
+import 'package:school_app/models/course_detail_screen.dart';
+import 'package:school_app/shared/methods.dart';
 
 import '../cubit/school_cubit/cubit.dart';
 import '../cubit/school_cubit/states.dart';
@@ -31,7 +32,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Row(
                       children: [
                         CircleAvatar(
@@ -50,8 +51,12 @@ class _CoursesScreenState extends State<CoursesScreen> {
                         Expanded(
                           child: Container(
                             margin: const EdgeInsets.all(15),
-                            padding: const EdgeInsets.all(10),
-                            color: Colors.grey[100],
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2),
+                              color: Colors.grey[100],
+                            ),
                             child: Row(
                               children: [
                                 Text(
@@ -61,14 +66,16 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                       .bodyText1!
                                       .copyWith(
                                         color: Colors.grey[400],
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 14,
                                       ),
                                 ),
                                 Expanded(
                                   child: DropdownButtonHideUnderline(
                                     child: DropdownButton<String>(
                                       iconSize: 30,
-                                      iconEnabledColor: Colors.black,
-                                      iconDisabledColor: Colors.black,
+                                      iconEnabledColor: Colors.grey,
+                                      iconDisabledColor: Colors.grey,
                                       value: cubit.selectedInstructor,
                                       items: List.generate(
                                         cubit.instructorsNames!.length,
@@ -78,7 +85,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                             cubit.instructorsNames![index],
                                             style: const TextStyle(
                                               color: Colors.black,
-                                              fontWeight: FontWeight.bold,
+                                              fontWeight: FontWeight.normal,
                                             ),
                                             textAlign: TextAlign.right,
                                           ),
@@ -99,87 +106,57 @@ class _CoursesScreenState extends State<CoursesScreen> {
                       ],
                     ),
                   ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: CircleAvatar(
-                          radius: 16,
-                          backgroundColor: Colors.grey[100],
-                          child: IconButton(
-                            onPressed: () {
-                              cubit.closeDatesFilter();
-                            },
-                            icon: const Icon(
-                              Icons.clear,
-                              size: 16,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.grey[100],
+                            child: IconButton(
+                              onPressed: () {
+                                cubit.closeDatesFilter();
+                              },
+                              icon: const Icon(
+                                Icons.clear,
+                                size: 16,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: ReusableTextField(
-                                  textLabel: 'From',
-                                  validate: (String value) {
-                                    if (value.isEmpty) {
-                                      // return 'age must not be empty';
-                                    }
-                                  },
-                                  type: TextInputType.number,
-                                  onChange: (String value) {},
-                                  controller: cubit.fromDateController,
-                                  onTap: () {
-                                    showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(1990),
-                                      lastDate: DateTime.now(),
-                                    ).then(
-                                      (dateValue) {
-                                        if (dateValue != null) {
-                                          cubit.fromDate = dateValue;
-                                          cubit.fromDateController.text =
-                                              DateFormat.yMd()
-                                                  .format(dateValue);
-                                        }
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: Row(
+                              children: [
+                                Expanded(
                                   child: ReusableTextField(
-                                    textLabel: 'To',
+                                    color: Colors.grey,
+                                    textLabel: 'From',
                                     validate: (String value) {
                                       if (value.isEmpty) {
-                                        // return 'classRoom must not be empty';
+                                        // return 'age must not be empty';
                                       }
                                     },
                                     type: TextInputType.number,
                                     onChange: (String value) {},
-                                    controller: cubit.toDateController,
+                                    controller: cubit.fromDateController,
                                     onTap: () {
                                       showDatePicker(
                                         context: context,
                                         initialDate: DateTime.now(),
                                         firstDate: DateTime(1990),
-                                        lastDate: DateTime(2025),
+                                        lastDate: DateTime.now(),
                                       ).then(
                                         (dateValue) {
                                           if (dateValue != null) {
-                                            cubit.toDate = dateValue;
-                                            cubit.toDateController.text =
+                                            cubit.fromDate = dateValue;
+                                            cubit.fromDateController.text =
                                                 DateFormat.yMd()
                                                     .format(dateValue);
                                           }
@@ -188,38 +165,112 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                     },
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: CircleAvatar(
-                                  radius: 16,
-                                  backgroundColor: Colors.grey[100],
-                                  child: IconButton(
-                                    onPressed: () {
-                                      cubit.filterCoursesWithDates();
-                                    },
-                                    icon: const Icon(
-                                      Icons.search,
-                                      size: 14,
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    child: ReusableTextField(
+                                      color: Colors.grey,
+                                      textLabel: 'To',
+                                      validate: (String value) {
+                                        if (value.isEmpty) {
+                                          // return 'classRoom must not be empty';
+                                        }
+                                      },
+                                      type: TextInputType.number,
+                                      onChange: (String value) {},
+                                      controller: cubit.toDateController,
+                                      onTap: () {
+                                        showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime(1990),
+                                          lastDate: DateTime(2025),
+                                        ).then(
+                                          (dateValue) {
+                                            if (dateValue != null) {
+                                              cubit.toDate = dateValue;
+                                              cubit.toDateController.text =
+                                                  DateFormat.yMd()
+                                                      .format(dateValue);
+                                            }
+                                          },
+                                        );
+                                      },
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: CircleAvatar(
+                                    radius: 16,
+                                    backgroundColor: Colors.grey[100],
+                                    child: IconButton(
+                                      onPressed: () {
+                                        cubit.filterCoursesWithDates();
+                                      },
+                                      icon: const Icon(
+                                        Icons.search,
+                                        size: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                    child: Divider(
+                      color: Colors.grey[200],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      top: 25,
+                      bottom: 10,
+                    ),
+                    child: Text(
+                      'RECENT COURSES',
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                          // fontWeight: FontWeight.bold,
+                          // fontSize: 18,
+                          ),
+                    ),
                   ),
                   Expanded(
                     child: ListView.separated(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 5),
+                        vertical: 10,
+                        horizontal: 5,
+                      ),
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            navigateTo(
+                              widget: CourseDetailScreen(
+                                  course: cubit.coursesWithoutFilter![index]),
+                              context: context,
+                            );
+                          },
                           child: Card(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 8,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(1),
+                            ),
                             elevation: 5,
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -238,12 +289,21 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                       Expanded(
                                         child: Align(
                                           alignment: Alignment.centerLeft,
-                                          child: CircleAvatar(
-                                            backgroundColor: Colors.grey[300],
-                                            backgroundImage: const AssetImage(
-                                              'assets/images/subject.jpg',
+                                          child: Container(
+                                            height: 80,
+                                            width: 90,
+                                            decoration: BoxDecoration(
+                                              image: const DecorationImage(
+                                                image: AssetImage(
+                                                  'assets/images/subject.jpg',
+                                                ),
+                                                fit: BoxFit.cover,
+                                              ),
+                                              border: Border.all(
+                                                color: Colors.grey[100]!,
+                                                width: 2,
+                                              ),
                                             ),
-                                            radius: 35,
                                           ),
                                         ),
                                       ),
@@ -255,10 +315,6 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                // cubit
-                                                //     .coursesModel!
-                                                //     .courses![index]
-                                                //     .subject!,
                                                 '${cubit.coursesWithoutFilter![index].subject}',
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
@@ -282,7 +338,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                                     .caption
                                                     ?.copyWith(
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                          FontWeight.normal,
                                                     ),
                                               ),
                                             ],

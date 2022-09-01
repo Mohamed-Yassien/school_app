@@ -248,7 +248,6 @@ class SchoolCubit extends Cubit<SchoolStates> {
   }
 
   closeDatesFilter() {
-    coursesWithoutFilter = coursesModel!.courses;
     fromDate = null;
     toDate = null;
     fromDateController.text = '';
