@@ -11,11 +11,11 @@ class ReusableCalenderDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CalendarDatePicker2(
-      selectableDayPredicate: (date){
+      selectableDayPredicate: (date) {
         return false;
       },
       config: CalendarDatePicker2Config(
-        calendarType: CalendarDatePicker2Type.single,
+        calendarType: CalendarDatePicker2Type.multi,
         calendarViewMode: DatePickerMode.day,
         weekdayLabels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         controlsHeight: 50,

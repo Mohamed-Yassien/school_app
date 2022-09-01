@@ -23,23 +23,30 @@ class CoursesModel {
 
 class Courses {
   int? id;
+  int? instructorId;
   String? subject;
+  String? firstSectionDate;
   String? description;
   String? instructor;
   String? numberOfLectures;
   List<String>? dates;
 
-  Courses(
-      {this.id,
-      this.subject,
-      this.description,
-      this.instructor,
-      this.numberOfLectures,
-      this.dates});
+  Courses({
+    this.id,
+    this.subject,
+    this.firstSectionDate,
+    this.description,
+    this.instructor,
+    this.numberOfLectures,
+    this.dates,
+    this.instructorId,
+  });
 
   Courses.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    instructorId = json['instructor_id'];
     subject = json['subject'];
+    firstSectionDate = json['first_section_date'];
     description = json['description'];
     instructor = json['instructor'];
     numberOfLectures = json['number_of_lectures'];
@@ -49,7 +56,9 @@ class Courses {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['instructor_id'] = instructorId;
     data['subject'] = subject;
+    data['first_section_date'] = firstSectionDate;
     data['description'] = description;
     data['instructor'] = instructor;
     data['number_of_lectures'] = numberOfLectures;

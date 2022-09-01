@@ -132,12 +132,26 @@ class SchoolCubit extends Cubit<SchoolStates> {
   }
 
   InstructorsModel? instructorsModel;
+  List<String>? instructorsNames;
+
+  String? selectedInstructor;
+
+  changeInstructorName(String value) {
+    selectedInstructor = value;
+    filterCoursesListWithInstructorName(value);
+    emit(SchoolChangeInstructorNameInMenuState());
+  }
 
   void getInstructors() {
     emit(SchoolGetInstructorsLoadingState());
     DioHelper.getData(url: GET_INSTRUCTORS).then((value) {
       instructorsModel = InstructorsModel.fromJson(value.data);
-      print(studentsModel!.students![0].name);
+      print(instructorsModel!.instructors![0].name);
+      instructorsNames = List.generate(
+        instructorsModel!.instructors!.length,
+        (index) => instructorsModel!.instructors![index].name!,
+      );
+      print(instructorsNames);
       emit(SchoolGetInstructorsSuccessState());
     }).catchError((error) {
       print(error.toString());
@@ -151,7 +165,7 @@ class SchoolCubit extends Cubit<SchoolStates> {
     emit(SchoolGetSubjectsLoadingState());
     DioHelper.getData(url: GET_SUBJECTS).then((value) {
       subjectsModel = SubjectsModel.fromJson(value.data);
-      print(studentsModel!.students![0].name);
+      print(subjectsModel!.subjects![0].subject);
       emit(SchoolGetSubjectsSuccessState());
     }).catchError((error) {
       print(error.toString());
@@ -159,18 +173,91 @@ class SchoolCubit extends Cubit<SchoolStates> {
     });
   }
 
-
   CoursesModel? coursesModel;
+  List<Courses>? coursesWithoutFilter;
 
   void getCourses() {
     emit(SchoolGetCoursesLoadingState());
     DioHelper.getData(url: GET_COURSES).then((value) {
       coursesModel = CoursesModel.fromJson(value.data);
-      print(studentsModel!.students![0].name);
+      coursesWithoutFilter = coursesModel!.courses!;
+      print('val ${coursesWithoutFilter![0].instructor}');
       emit(SchoolGetCoursesSuccessState());
     }).catchError((error) {
       print(error.toString());
       emit(SchoolGetCoursesErrorState());
     });
   }
+
+  // List<Courses> filteredWithNameList = [];
+
+  filterCoursesListWithInstructorName(String name) {
+    List<Courses> coursesWithInstructorNameFilter = [];
+    for (Courses courses in coursesModel!.courses!) {
+      if (courses.instructor == name) {
+        print('okk');
+        coursesWithInstructorNameFilter.add(courses);
+        print(coursesWithInstructorNameFilter);
+      } else {
+        coursesWithInstructorNameFilter = [];
+        emit(FilterCoursesListWithInstructorName());
+      }
+      coursesWithoutFilter = coursesWithInstructorNameFilter;
+      emit(FilterCoursesListWithInstructorName());
+    }
+  }
+
+  closeFilter() {
+    coursesWithoutFilter = coursesModel!.courses;
+    selectedInstructor = null;
+    emit(CloseFilterCoursesListWithInstructorName());
+  }
+
+  var fromDateController = TextEditingController();
+  DateTime? fromDate;
+  DateTime? toDate;
+  var toDateController = TextEditingController();
+  List<Courses> coursesWithDatesFilter = [];
+
+  filterCoursesWithDates() {
+    if (fromDate != null && toDate != null) {
+      for (Courses courses in coursesWithoutFilter!) {
+        if ((DateTime.parse(courses.firstSectionDate!) == fromDate) ||
+            (DateTime.parse(courses.firstSectionDate!).isAfter(fromDate!))) {
+          print('ha');
+          print(DateTime.parse(courses.firstSectionDate!));
+          for (String date in courses.dates!) {
+            if ((DateTime.parse(date) == toDate ||
+                DateTime.parse(date).isBefore(
+                  toDate!,
+                ))) {
+              if (!coursesWithDatesFilter.contains(courses)) {
+                coursesWithDatesFilter.add(courses);
+                print('go on');
+              }
+            } else {
+              print('go out');
+              coursesWithDatesFilter = [];
+            }
+          }
+        }
+        coursesWithoutFilter = coursesWithDatesFilter;
+        emit(FilterCoursesListWithDates());
+      }
+    }
+  }
+
+  closeDatesFilter() {
+    coursesWithoutFilter = coursesModel!.courses;
+    fromDate = null;
+    toDate = null;
+    fromDateController.text = '';
+    toDateController.text = '';
+    emit(CloseFilterCoursesListWithDates());
+  }
 }
+
+// print(DateTime.parse(date));
+// print(DateTime.parse(fromDateString));
+// print(DateFormat.yMd().format(DateTime.parse(date)));
+// print(DateTime.parse(DateFormat.yMd().format(DateTime.parse(date))));
