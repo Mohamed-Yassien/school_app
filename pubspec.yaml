@@ -43,6 +43,7 @@ dependencies:
   intl: ^0.17.0
   calendar_date_picker2: ^0.2.3
   syncfusion_flutter_datepicker: ^20.2.46
+  date_time_picker_widget: ^1.0.1+4
 
 
 dev_dependencies:

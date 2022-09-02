@@ -11,6 +11,7 @@ class ReusableCalenderDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CalendarDatePicker2(
+
       selectableDayPredicate: (date) {
         return false;
       },

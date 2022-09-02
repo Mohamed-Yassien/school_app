@@ -289,8 +289,8 @@ class AddStudentScreenScreen extends StatelessWidget {
                             horizontal: 40,
                           ),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: defaultColor,
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.teal,
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:school_app/shared/widgets/reusable_card.dart';
 
 import '../cubit/school_cubit/cubit.dart';
 import '../cubit/school_cubit/states.dart';
@@ -34,82 +35,12 @@ class SubjectsScreen extends StatelessWidget {
                         const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          // // navigateTo(
-                          // //     widget: InstructorDetailsScreen(
-                          // //       subjects:
-                          // //           cubit.subjectsModel!.instructors![index],
-                          // //     ),
-                          //     context: context);
-                        },
-                        child: Card(
-                          elevation: 5,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              top: 15,
-                              bottom: 15,
-                              left: 10,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.grey[300],
-                                    backgroundImage: const AssetImage(
-                                      'assets/images/subject.jpg',
-                                    ),
-                                    radius: 35,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          cubit.subjectsModel!
-                                              .subjects![index].subject!,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          textAlign: TextAlign.center,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2
-                                              ?.copyWith(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          cubit
-                                              .subjectsModel!
-                                              .subjects![index]
-                                              .description!,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .caption
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-
-                              ],
-                            ),
-                          ),
-                        ),
+                      return ReusableCard(
+                        imageUrl: 'assets/images/subject.jpg',
+                        baseText: cubit.subjectsModel!.subjects![index].subject!,
+                        secondText: cubit.subjectsModel!.subjects![index].description!,
+                        trailingText: '',
+                        onCardTap: (){},
                       );
                     },
                     separatorBuilder: (context, index) {

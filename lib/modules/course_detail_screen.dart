@@ -8,9 +8,9 @@ import 'package:school_app/shared/widgets/reusable_calender_date.dart';
 class CourseDetailScreen extends StatelessWidget {
   final Courses course;
 
-  CourseDetailScreen({
+  const CourseDetailScreen({Key? key,
     required this.course,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CourseDetailScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
               },
-              child:  Padding(
+              child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: CircleAvatar(
                   backgroundColor: Colors.teal.shade200,
