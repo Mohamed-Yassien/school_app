@@ -199,7 +199,7 @@ class SchoolCubit extends Cubit<SchoolStates> {
   List<Courses> coursesWithInstructorNameFilter = [];
 
   filterCoursesListWithInstructorName(String name) {
-    if(fromDate == null || toDate == null){
+    if (fromDate == null || toDate == null) {
       coursesWithInstructorNameFilter = [];
       for (Courses courses in coursesModel!.courses!) {
         if (courses.instructor == name) {
@@ -213,7 +213,7 @@ class SchoolCubit extends Cubit<SchoolStates> {
         coursesWithoutFilter = coursesWithInstructorNameFilter;
         emit(FilterCoursesListWithInstructorName());
       }
-    } else{
+    } else {
       coursesWithInstructorNameFilter = [];
       for (Courses courses in coursesWithDatesFilter) {
         if (courses.instructor == name) {
@@ -228,20 +228,30 @@ class SchoolCubit extends Cubit<SchoolStates> {
         emit(FilterCoursesListWithInstructorName());
       }
     }
-
   }
 
   closeFilter() {
-    coursesWithoutFilter =  (fromDate == null || toDate == null) ? coursesModel!.courses : coursesWithDatesFilter;
+    coursesWithoutFilter = (fromDate == null || toDate == null)
+        ? coursesModel!.courses
+        : coursesWithDatesFilter;
     selectedInstructor = null;
     emit(CloseFilterCoursesListWithInstructorName());
   }
 
-  var fromDateController = TextEditingController();
+  String fromDateController = 'From';
   DateTime? fromDate;
   DateTime? toDate;
-  var toDateController = TextEditingController();
+  var toDateController = 'To';
   List<Courses> coursesWithDatesFilter = [];
+
+  changeFromDateContainerString(String val){
+    fromDateController = val;
+    emit(ChangeFromDateContainerValueState());
+  }
+  changeToDateContainerString(String val){
+    toDateController = val;
+    emit(ChangeToDateContainerValueState());
+  }
 
   filterCoursesWithDates() {
     if (fromDate != null && toDate != null && selectedInstructor == null) {
@@ -275,7 +285,7 @@ class SchoolCubit extends Cubit<SchoolStates> {
     } else if (fromDate != null &&
         toDate != null &&
         selectedInstructor != null) {
-      coursesWithDatesFilter =[];
+      coursesWithDatesFilter = [];
       for (Courses courses in coursesWithInstructorNameFilter) {
         print('in instructor list');
         print('from is $fromDate');
@@ -312,8 +322,8 @@ class SchoolCubit extends Cubit<SchoolStates> {
     coursesWithoutFilter = selectedInstructor == null
         ? coursesModel!.courses
         : coursesWithInstructorNameFilter;
-    fromDateController.text = '';
-    toDateController.text = '';
+    fromDateController = 'From';
+    toDateController = 'To';
     emit(CloseFilterCoursesListWithDates());
   }
 }

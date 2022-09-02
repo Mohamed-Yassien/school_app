@@ -49,3 +49,7 @@ class FilterCoursesListWithDates extends SchoolStates {}
 class FilterCoursesListWithDatesLoadingState extends SchoolStates {}
 
 class CloseFilterCoursesListWithDates extends SchoolStates {}
+
+class ChangeFromDateContainerValueState extends SchoolStates {}
+
+class ChangeToDateContainerValueState extends SchoolStates {}

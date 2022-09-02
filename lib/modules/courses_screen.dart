@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:school_app/models/course_detail_screen.dart';
+import 'package:school_app/modules/course_detail_screen.dart';
 import 'package:school_app/shared/methods.dart';
 
 import '../cubit/school_cubit/cubit.dart';
 import '../cubit/school_cubit/states.dart';
 import '../shared/constants.dart';
-import '../shared/widgets/reusable_text_field.dart';
 
 class CoursesScreen extends StatefulWidget {
   const CoursesScreen({Key? key}) : super(key: key);
@@ -108,8 +107,9 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
+                    padding: const EdgeInsets.only(
+                      left: 12,
+                      right: 18,
                     ),
                     child: Row(
                       children: [
@@ -137,17 +137,24 @@ class _CoursesScreenState extends State<CoursesScreen> {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: ReusableTextField(
-                                    color: Colors.grey,
-                                    textLabel: 'From',
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        // return 'age must not be empty';
-                                      }
-                                    },
-                                    type: TextInputType.number,
-                                    onChange: (String value) {},
-                                    controller: cubit.fromDateController,
+                                  child: InkWell(
+                                    child: Container(
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[100],
+                                        borderRadius: BorderRadius.circular(4),
+                                        border: Border.all(
+                                          color: Colors.grey[100]!,
+                                          width: 2,
+                                        ),
+                                      ),
+                                      child: Text(
+                                        cubit.fromDateController,
+                                        style: const TextStyle(
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ),
                                     onTap: () {
                                       showDatePicker(
                                         context: context,
@@ -159,9 +166,15 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                           if (dateValue != null) {
                                             cubit.fromDate = dateValue;
                                             print(cubit.fromDate.toString());
-                                            cubit.fromDateController.text =
+                                            cubit.changeFromDateContainerString(
                                                 DateFormat.yMd()
-                                                    .format(dateValue);
+                                                    .format(dateValue));
+                                            if (cubit.fromDate != null) {
+                                              cubit.filterCoursesWithDates();
+                                            }
+                                            // cubit.fromDateController =
+                                            //     DateFormat.yMd()
+                                            //         .format(dateValue);
                                           }
                                         },
                                       );
@@ -174,18 +187,27 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        vertical: 10),
-                                    child: ReusableTextField(
-                                      color: Colors.grey,
-                                      textLabel: 'To',
-                                      validate: (String value) {
-                                        if (value.isEmpty) {
-                                          // return 'classRoom must not be empty';
-                                        }
-                                      },
-                                      type: TextInputType.number,
-                                      onChange: (String value) {},
-                                      controller: cubit.toDateController,
+                                      vertical: 10,
+                                    ),
+                                    child: InkWell(
+                                      child: Container(
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[100],
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          border: Border.all(
+                                            color: Colors.grey[100]!,
+                                            width: 2,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          cubit.toDateController,
+                                          style: const TextStyle(
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ),
                                       onTap: () {
                                         showDatePicker(
                                           context: context,
@@ -197,9 +219,13 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                             if (dateValue != null) {
                                               cubit.toDate = dateValue;
                                               print(cubit.toDate.toString());
-                                              cubit.toDateController.text =
+                                              cubit.changeToDateContainerString(
                                                   DateFormat.yMd()
-                                                      .format(dateValue);
+                                                      .format(dateValue));
+                                              cubit.filterCoursesWithDates();
+                                              // cubit.toDateController =
+                                              //     DateFormat.yMd()
+                                              //         .format(dateValue);
                                             }
                                           },
                                         );
@@ -207,23 +233,23 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 14.0),
-                                  child: CircleAvatar(
-                                    radius: 16,
-                                    backgroundColor: Colors.grey[100],
-                                    child: IconButton(
-                                      onPressed: () {
-                                        cubit.filterCoursesWithDates();
-                                      },
-                                      icon: const Icon(
-                                        Icons.search,
-                                        color: Colors.black,
-                                        size: 14,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding: const EdgeInsets.only(left: 14.0),
+                                //   child: CircleAvatar(
+                                //     radius: 16,
+                                //     backgroundColor: Colors.grey[100],
+                                //     child: IconButton(
+                                //       onPressed: () {
+                                //         cubit.filterCoursesWithDates();
+                                //       },
+                                //       icon: const Icon(
+                                //         Icons.search,
+                                //         color: Colors.black,
+                                //         size: 14,
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),

@@ -24,20 +24,25 @@ class CourseDetailScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
+              child:  Padding(
+                padding: const EdgeInsets.all(10.0),
                 child: CircleAvatar(
-                  backgroundColor: Colors.teal,
-                  child: Icon(
-                    Icons.arrow_back,
+                  backgroundColor: Colors.teal.shade200,
+                  child: const Icon(
+                    Icons.arrow_back_rounded,
                     color: Colors.white,
+                    size: 20,
                   ),
                 ),
               ),
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.only(
+              left: 12.0,
+              right: 12,
+              top: 30,
+            ),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -88,8 +93,8 @@ class CourseDetailScreen extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 15),
                     child: Divider(
                       color: Colors.grey[200],
                     ),
