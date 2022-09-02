@@ -44,6 +44,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                             },
                             icon: const Icon(
                               Icons.clear,
+                              color: Colors.black,
                               size: 16,
                             ),
                           ),
@@ -123,6 +124,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                               },
                               icon: const Icon(
                                 Icons.clear,
+                                color: Colors.black,
                                 size: 16,
                               ),
                             ),
@@ -156,6 +158,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                         (dateValue) {
                                           if (dateValue != null) {
                                             cubit.fromDate = dateValue;
+                                            print(cubit.fromDate.toString());
                                             cubit.fromDateController.text =
                                                 DateFormat.yMd()
                                                     .format(dateValue);
@@ -193,6 +196,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                           (dateValue) {
                                             if (dateValue != null) {
                                               cubit.toDate = dateValue;
+                                              print(cubit.toDate.toString());
                                               cubit.toDateController.text =
                                                   DateFormat.yMd()
                                                       .format(dateValue);
@@ -204,7 +208,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
+                                  padding: const EdgeInsets.only(left: 14.0),
                                   child: CircleAvatar(
                                     radius: 16,
                                     backgroundColor: Colors.grey[100],
@@ -214,6 +218,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                       },
                                       icon: const Icon(
                                         Icons.search,
+                                        color: Colors.black,
                                         size: 14,
                                       ),
                                     ),

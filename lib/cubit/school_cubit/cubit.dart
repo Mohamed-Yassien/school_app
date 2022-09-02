@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
 import 'package:school_app/models/courses_model.dart';
 import 'package:school_app/models/instructors_model.dart';
@@ -95,8 +96,11 @@ class SchoolCubit extends Cubit<SchoolStates> {
     );
     print(student.toJson());
     emit(AddNewStudentLoadingState());
-    DioHelper.post(url: ADD_STUDENT, body: student.toJson(), haveFile: true)
-        .then(
+    DioHelper.post(
+      url: ADD_STUDENT,
+      body: student.toJson(),
+      haveFile: true,
+    ).then(
       (value) {
         print('value is ${value.data}');
         clearAllData();
@@ -182,6 +186,9 @@ class SchoolCubit extends Cubit<SchoolStates> {
       coursesModel = CoursesModel.fromJson(value.data);
       coursesWithoutFilter = coursesModel!.courses!;
       print('val ${coursesWithoutFilter![0].instructor}');
+      print('format is ${DateFormat.jm().format(
+        DateTime.parse(coursesWithoutFilter![0].dates![0]),
+      )}');
       emit(SchoolGetCoursesSuccessState());
     }).catchError((error) {
       print(error.toString());
@@ -189,26 +196,43 @@ class SchoolCubit extends Cubit<SchoolStates> {
     });
   }
 
-  // List<Courses> filteredWithNameList = [];
+  List<Courses> coursesWithInstructorNameFilter = [];
 
   filterCoursesListWithInstructorName(String name) {
-    List<Courses> coursesWithInstructorNameFilter = [];
-    for (Courses courses in coursesModel!.courses!) {
-      if (courses.instructor == name) {
-        print('okk');
-        coursesWithInstructorNameFilter.add(courses);
-        print(coursesWithInstructorNameFilter);
-      } else {
-        coursesWithInstructorNameFilter = [];
+    if(fromDate == null || toDate == null){
+      coursesWithInstructorNameFilter = [];
+      for (Courses courses in coursesModel!.courses!) {
+        if (courses.instructor == name) {
+          print('okk');
+          coursesWithInstructorNameFilter.add(courses);
+          print(coursesWithInstructorNameFilter);
+        } else {
+          coursesWithInstructorNameFilter = [];
+          emit(FilterCoursesListWithInstructorName());
+        }
+        coursesWithoutFilter = coursesWithInstructorNameFilter;
         emit(FilterCoursesListWithInstructorName());
       }
-      coursesWithoutFilter = coursesWithInstructorNameFilter;
-      emit(FilterCoursesListWithInstructorName());
+    } else{
+      coursesWithInstructorNameFilter = [];
+      for (Courses courses in coursesWithDatesFilter) {
+        if (courses.instructor == name) {
+          print('okk');
+          coursesWithInstructorNameFilter.add(courses);
+          print(coursesWithInstructorNameFilter);
+        } else {
+          coursesWithInstructorNameFilter = [];
+          emit(FilterCoursesListWithInstructorName());
+        }
+        coursesWithoutFilter = coursesWithInstructorNameFilter;
+        emit(FilterCoursesListWithInstructorName());
+      }
     }
+
   }
 
   closeFilter() {
-    coursesWithoutFilter = coursesModel!.courses;
+    coursesWithoutFilter =  (fromDate == null || toDate == null) ? coursesModel!.courses : coursesWithDatesFilter;
     selectedInstructor = null;
     emit(CloseFilterCoursesListWithInstructorName());
   }
@@ -220,8 +244,11 @@ class SchoolCubit extends Cubit<SchoolStates> {
   List<Courses> coursesWithDatesFilter = [];
 
   filterCoursesWithDates() {
-    if (fromDate != null && toDate != null) {
-      for (Courses courses in coursesWithoutFilter!) {
+    if (fromDate != null && toDate != null && selectedInstructor == null) {
+      coursesWithDatesFilter = [];
+      for (Courses courses in coursesModel!.courses!) {
+        print('from is $fromDate');
+        print('to is $toDate');
         if ((DateTime.parse(courses.firstSectionDate!) == fromDate) ||
             (DateTime.parse(courses.firstSectionDate!).isAfter(fromDate!))) {
           print('ha');
@@ -231,7 +258,39 @@ class SchoolCubit extends Cubit<SchoolStates> {
                 DateTime.parse(date).isBefore(
                   toDate!,
                 ))) {
-              if (!coursesWithDatesFilter.contains(courses)) {
+              if (coursesWithDatesFilter
+                  .every((item) => item.id != courses.id)) {
+                coursesWithDatesFilter.add(courses);
+                print('go on');
+              }
+            } else {
+              print('go out');
+              coursesWithDatesFilter = [];
+            }
+          }
+        }
+        coursesWithoutFilter = coursesWithDatesFilter;
+        emit(FilterCoursesListWithDates());
+      }
+    } else if (fromDate != null &&
+        toDate != null &&
+        selectedInstructor != null) {
+      coursesWithDatesFilter =[];
+      for (Courses courses in coursesWithInstructorNameFilter) {
+        print('in instructor list');
+        print('from is $fromDate');
+        print('to is $toDate');
+        if ((DateTime.parse(courses.firstSectionDate!) == fromDate) ||
+            (DateTime.parse(courses.firstSectionDate!).isAfter(fromDate!))) {
+          print('ha');
+          print(DateTime.parse(courses.firstSectionDate!));
+          for (String date in courses.dates!) {
+            if ((DateTime.parse(date) == toDate ||
+                DateTime.parse(date).isBefore(
+                  toDate!,
+                ))) {
+              if (coursesWithDatesFilter
+                  .every((item) => item.id != courses.id)) {
                 coursesWithDatesFilter.add(courses);
                 print('go on');
               }
@@ -250,6 +309,9 @@ class SchoolCubit extends Cubit<SchoolStates> {
   closeDatesFilter() {
     fromDate = null;
     toDate = null;
+    coursesWithoutFilter = selectedInstructor == null
+        ? coursesModel!.courses
+        : coursesWithInstructorNameFilter;
     fromDateController.text = '';
     toDateController.text = '';
     emit(CloseFilterCoursesListWithDates());
