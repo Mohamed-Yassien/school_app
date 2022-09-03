@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:school_app/cubit/school_cubit/cubit.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
 import 'package:school_app/models/courses_model.dart';
-import 'package:school_app/shared/widgets/reusable_calender_date.dart';
+import 'package:school_app/shared/widgets/sfcalender.dart';
+
+import '../shared/widgets/reusable_calender_date.dart';
 
 class CourseDetailScreen extends StatelessWidget {
   final Courses course;
 
-  const CourseDetailScreen({Key? key,
+  const CourseDetailScreen({
+    Key? key,
     required this.course,
   }) : super(key: key);
 
@@ -20,21 +24,15 @@ class CourseDetailScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            leading: InkWell(
-              onTap: () {
+            leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.teal,
+                size: 35,
+              ),
+              onPressed: () {
                 Navigator.pop(context);
               },
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: CircleAvatar(
-                  backgroundColor: Colors.teal.shade200,
-                  child: const Icon(
-                    Icons.arrow_back_rounded,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-              ),
             ),
           ),
           body: Padding(
@@ -114,12 +112,17 @@ class CourseDetailScreen extends StatelessWidget {
                   ),
                   Card(
                     elevation: 10,
-                    child: ReusableCalenderDate(
-                      dates: List<DateTime?>.generate(
-                        course.dates!.length,
-                        (index2) => DateTime.parse(
-                          course.dates![index2],
+                    child: Container(
+                      height: 300,
+                      padding: const EdgeInsets.all(15),
+                      child: SFCalenderDates(
+                        dates: List<DateTime>.generate(
+                          course.dates!.length,
+                          (index2) => DateTime.parse(
+                            course.dates![index2],
+                          ),
                         ),
+                        dateTime: course.dates!,
                       ),
                     ),
                   ),
@@ -132,12 +135,3 @@ class CourseDetailScreen extends StatelessWidget {
     );
   }
 }
-
-// ReusableCalenderDate(
-// dates: List<DateTime?>.generate(
-// course.dates!.length,
-// (index2) => DateTime.parse(
-// course.dates![index2],
-// ),
-// ),
-// ),

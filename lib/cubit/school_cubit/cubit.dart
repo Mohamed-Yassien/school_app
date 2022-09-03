@@ -236,6 +236,9 @@ class SchoolCubit extends Cubit<SchoolStates> {
         : coursesWithDatesFilter;
     selectedInstructor = null;
     emit(CloseFilterCoursesListWithInstructorName());
+    if(fromDate != null && toDate != null){
+      filterCoursesWithDates();
+    }
   }
 
   String fromDateController = 'From';
@@ -244,11 +247,12 @@ class SchoolCubit extends Cubit<SchoolStates> {
   var toDateController = 'To';
   List<Courses> coursesWithDatesFilter = [];
 
-  changeFromDateContainerString(String val){
+  changeFromDateContainerString(String val) {
     fromDateController = val;
     emit(ChangeFromDateContainerValueState());
   }
-  changeToDateContainerString(String val){
+
+  changeToDateContainerString(String val) {
     toDateController = val;
     emit(ChangeToDateContainerValueState());
   }
@@ -325,10 +329,9 @@ class SchoolCubit extends Cubit<SchoolStates> {
     fromDateController = 'From';
     toDateController = 'To';
     emit(CloseFilterCoursesListWithDates());
+    if(selectedInstructor != null){
+      filterCoursesListWithInstructorName(selectedInstructor!);
+    }
   }
 }
 
-// print(DateTime.parse(date));
-// print(DateTime.parse(fromDateString));
-// print(DateFormat.yMd().format(DateTime.parse(date)));
-// print(DateTime.parse(DateFormat.yMd().format(DateTime.parse(date))));
