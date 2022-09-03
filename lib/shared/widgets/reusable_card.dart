@@ -8,6 +8,8 @@ class ReusableCard extends StatelessWidget {
   final String secondText;
   final String trailingText;
   final VoidCallback onCardTap;
+  final BoxShape boxShape;
+  final bool isStudent;
 
   const ReusableCard({
     super.key,
@@ -16,6 +18,8 @@ class ReusableCard extends StatelessWidget {
     required this.secondText,
     required this.trailingText,
     required this.onCardTap,
+    this.boxShape = BoxShape.rectangle,
+    this.isStudent = false,
   });
 
   @override
@@ -51,12 +55,13 @@ class ReusableCard extends StatelessWidget {
                         height: 80,
                         width: 90,
                         decoration: BoxDecoration(
-                          image:  DecorationImage(
+                          image: DecorationImage(
                             image: AssetImage(
                               imageUrl,
                             ),
                             fit: BoxFit.cover,
                           ),
+                          shape: boxShape,
                           border: Border.all(
                             color: Colors.grey[100]!,
                             width: 2,
@@ -100,7 +105,8 @@ class ReusableCard extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Align(
-                      alignment: Alignment.center,
+                      alignment:
+                          isStudent ? Alignment.centerLeft : Alignment.center,
                       child: Text(
                         trailingText,
                         textAlign: TextAlign.start,

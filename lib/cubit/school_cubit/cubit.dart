@@ -243,8 +243,8 @@ class SchoolCubit extends Cubit<SchoolStates> {
 
   String fromDateController = 'From';
   DateTime? fromDate;
-  DateTime? toDate;
-  var toDateController = 'To';
+  DateTime? toDate = DateTime.now();
+  String toDateController = DateFormat.yMd().format(DateTime.now());
   List<Courses> coursesWithDatesFilter = [];
 
   changeFromDateContainerString(String val) {
@@ -258,7 +258,8 @@ class SchoolCubit extends Cubit<SchoolStates> {
   }
 
   filterCoursesWithDates() {
-    if (fromDate != null && toDate != null && selectedInstructor == null) {
+
+    if (fromDate != null && selectedInstructor == null) {
       coursesWithDatesFilter = [];
       for (Courses courses in coursesModel!.courses!) {
         print('from is $fromDate');
@@ -287,7 +288,6 @@ class SchoolCubit extends Cubit<SchoolStates> {
         emit(FilterCoursesListWithDates());
       }
     } else if (fromDate != null &&
-        toDate != null &&
         selectedInstructor != null) {
       coursesWithDatesFilter = [];
       for (Courses courses in coursesWithInstructorNameFilter) {
@@ -322,12 +322,12 @@ class SchoolCubit extends Cubit<SchoolStates> {
 
   closeDatesFilter() {
     fromDate = null;
-    toDate = null;
+    toDate = DateTime.now();
     coursesWithoutFilter = selectedInstructor == null
         ? coursesModel!.courses
         : coursesWithInstructorNameFilter;
     fromDateController = 'From';
-    toDateController = 'To';
+    toDateController = DateFormat.yMd().format(DateTime.now());
     emit(CloseFilterCoursesListWithDates());
     if(selectedInstructor != null){
       filterCoursesListWithInstructorName(selectedInstructor!);

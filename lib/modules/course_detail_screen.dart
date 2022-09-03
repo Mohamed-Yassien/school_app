@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:school_app/cubit/school_cubit/cubit.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
 import 'package:school_app/models/courses_model.dart';
+import 'package:school_app/shared/widgets/reusable_divider.dart';
 import 'package:school_app/shared/widgets/sfcalender.dart';
-
-import '../shared/widgets/reusable_calender_date.dart';
 
 class CourseDetailScreen extends StatelessWidget {
   final Courses course;
@@ -90,13 +88,7 @@ class CourseDetailScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 15),
-                    child: Divider(
-                      color: Colors.grey[200],
-                    ),
-                  ),
+                 const ReusableDivider(),
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 15,

@@ -12,13 +12,10 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   DioHelper.init();
-  BlocOverrides.runZoned(
-    () {
-      runApp(
-        const MyApp(),
-      );
-    },
-    blocObserver: MyBlocObserver(),
+  Bloc.observer = MyBlocObserver();
+
+  runApp(
+    const MyApp(),
   );
 }
 

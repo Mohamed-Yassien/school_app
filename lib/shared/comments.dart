@@ -21,8 +21,7 @@
 //   ),
 // ),
 
-
-
+////////////////////////////
 
 /////////////////////////
 
@@ -44,7 +43,7 @@
 //   ),
 // ),
 
- ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
 // InkWell(
 // onTap: () {
@@ -238,8 +237,197 @@
 
 //////////////////////////////////////
 
-
 // print(DateTime.parse(date));
 // print(DateTime.parse(fromDateString));
 // print(DateFormat.yMd().format(DateTime.parse(date)));
 // print(DateTime.parse(DateFormat.yMd().format(DateTime.parse(date))));
+
+/////////////////////
+
+// InkWell(
+// onTap: () {
+// navigateTo(
+// widget: StudentDetailsScreen(
+// students: cubit.studentsModel!.students![index],
+// ),
+// context: context);
+// },
+// child: Card(
+// elevation: 5,
+// child: Padding(
+// padding: const EdgeInsets.only(
+// top: 15,
+// bottom: 15,
+// left: 10,
+// ),
+// child: Row(
+// mainAxisAlignment: MainAxisAlignment.spaceBetween,
+// crossAxisAlignment: CrossAxisAlignment.center,
+// children: [
+// Expanded(
+// child: Align(
+// alignment: Alignment.centerLeft,
+// child: CircleAvatar(
+// backgroundColor: Colors.grey[300],
+// backgroundImage: const AssetImage(
+// 'assets/images/student.jpg',
+// ),
+// radius: 35,
+// ),
+// ),
+// ),
+// Expanded(
+// child: Align(
+// alignment: Alignment.centerLeft,
+// child: Column(
+// crossAxisAlignment: CrossAxisAlignment.start,
+// children: [
+// Text(
+// cubit.studentsModel!.students![index]
+// .name!,
+// maxLines: 2,
+// overflow: TextOverflow.ellipsis,
+// style: Theme.of(context)
+// .textTheme
+//     .subtitle2
+//     ?.copyWith(
+// color: Colors.black,
+// fontWeight: FontWeight.bold,
+// ),
+// ),
+// const SizedBox(
+// height: 5,
+// ),
+// Text(
+// '${cubit.studentsModel?.students?[index].city}',
+// style: Theme.of(context)
+// .textTheme
+//     .caption
+//     ?.copyWith(
+// fontWeight: FontWeight.bold,
+// ),
+// ),
+// ],
+// ),
+// ),
+// ),
+// Expanded(
+// child: Align(
+// alignment: Alignment.center,
+// child: Text(
+// '${cubit.studentsModel?.students?[index].status}',
+// textAlign: TextAlign.start,
+// style: Theme.of(context)
+// .textTheme
+//     .subtitle2
+//     ?.copyWith(
+// color: defaultColor,
+// fontWeight: FontWeight.bold,
+// fontSize: 12,
+// ),
+// ),
+// ),
+// ),
+// ],
+// ),
+// ),
+// ),
+// )
+
+//////////////////////////////////
+
+
+// InkWell(
+// onTap: () {
+// navigateTo(
+// widget: InstructorDetailsScreen(
+// instructors:
+// cubit.instructorsModel!.instructors![index],
+// ),
+// context: context);
+// },
+// child: Card(
+// elevation: 5,
+// child: Padding(
+// padding: const EdgeInsets.only(
+// top: 15,
+// bottom: 15,
+// left: 10,
+// ),
+// child: Row(
+// mainAxisAlignment: MainAxisAlignment.spaceBetween,
+// crossAxisAlignment: CrossAxisAlignment.center,
+// children: [
+// Expanded(
+// child: Align(
+// alignment: Alignment.centerLeft,
+// child: CircleAvatar(
+// backgroundColor: Colors.grey[300],
+// backgroundImage: const AssetImage(
+// 'assets/images/instructor.jpg',
+// ),
+// radius: 35,
+// ),
+// ),
+// ),
+// Expanded(
+// child: Align(
+// alignment: Alignment.center,
+// child: Column(
+// crossAxisAlignment:
+// CrossAxisAlignment.start,
+// children: [
+// Text(
+// cubit.instructorsModel!
+// .instructors![index].name!,
+// maxLines: 2,
+// overflow: TextOverflow.ellipsis,
+// style: Theme.of(context)
+// .textTheme
+//     .subtitle2
+//     ?.copyWith(
+// color: Colors.black,
+// fontWeight: FontWeight.bold,
+// ),
+// ),
+// const SizedBox(
+// height: 5,
+// ),
+// Text(
+// cubit
+//     .instructorsModel!
+// .instructors![index]
+// .contractType!,
+// style: Theme.of(context)
+// .textTheme
+//     .caption
+//     ?.copyWith(
+// fontWeight: FontWeight.bold,
+// ),
+// ),
+// ],
+// ),
+// ),
+// ),
+// Expanded(
+// child: Align(
+// alignment: Alignment.center,
+// child: Text(
+// '${cubit.instructorsModel?.instructors?[index].salary} \$',
+// textAlign: TextAlign.start,
+// style: Theme.of(context)
+// .textTheme
+//     .subtitle2
+//     ?.copyWith(
+// color: defaultColor,
+// fontWeight: FontWeight.bold,
+// fontSize: 12,
+// ),
+// ),
+// ),
+// ),
+// ],
+// ),
+// ),
+// ),
+// )
