@@ -7,6 +7,7 @@ import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/widgets/resuable_row_for_details.dart';
 import 'package:school_app/shared/widgets/reusable_text_field.dart';
 import 'package:school_app/shared/widgets/reusable_toast.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddStudentScreenScreen extends StatelessWidget {
   const AddStudentScreenScreen({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class AddStudentScreenScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SchoolCubit, SchoolStates>(
       listener: (context, state) {
-        if(state is AddNewStudentSuccessState){
+        if (state is AddNewStudentSuccessState) {
           Navigator.pop(context);
         }
       },
@@ -25,7 +26,7 @@ class AddStudentScreenScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              'Add Student',
+              AppLocalizations.of(context)!.addStudent,
               style: Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: defaultColor,
                   ),
@@ -50,7 +51,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     child: ReusableTextField(
-                      textLabel: 'student name',
+                      textLabel: AppLocalizations.of(context)!.studentName,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'name must not be empty';
@@ -67,7 +68,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: ReusableTextField(
-                            textLabel: 'student age',
+                            textLabel: AppLocalizations.of(context)!.studentAge,
                             validate: (String value) {
                               if (value.isEmpty) {
                                 return 'age must not be empty';
@@ -86,7 +87,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: ReusableTextField(
-                            textLabel: 'classRoom',
+                            textLabel: AppLocalizations.of(context)!.classRoom,
                             validate: (String value) {
                               if (value.isEmpty) {
                                 return 'classRoom must not be empty';
@@ -103,7 +104,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ReusableTextField(
-                      textLabel: 'student date',
+                      textLabel: AppLocalizations.of(context)!.studentDate,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'date must not be empty';
@@ -133,7 +134,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ReusableTextField(
-                      textLabel: 'guardian name',
+                      textLabel: AppLocalizations.of(context)!.gName,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'guardian name must not be empty';
@@ -147,7 +148,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ReusableTextField(
-                      textLabel: 'guardian job',
+                      textLabel: AppLocalizations.of(context)!.gJob,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'guardian job must not be empty';
@@ -161,7 +162,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ReusableTextField(
-                      textLabel: 'first phone',
+                      textLabel: AppLocalizations.of(context)!.fPhone,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'first phone must not be empty';
@@ -175,7 +176,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ReusableTextField(
-                      textLabel: 'second phone',
+                      textLabel: AppLocalizations.of(context)!.sPhone,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'second phone must not be empty';
@@ -189,7 +190,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ReusableTextField(
-                      textLabel: 'national id',
+                      textLabel: AppLocalizations.of(context)!.nationalId,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'national id must not be empty';
@@ -203,7 +204,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ReusableTextField(
-                      textLabel: 'student city',
+                      textLabel: AppLocalizations.of(context)!.studentCity,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'student city must not be empty';
@@ -217,7 +218,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ReusableTextField(
-                      textLabel: 'sitting number',
+                      textLabel: AppLocalizations.of(context)!.sittingNumber,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'sitting number must not be empty';
@@ -231,7 +232,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: ReusableTextField(
-                      textLabel: 'notes',
+                      textLabel: AppLocalizations.of(context)!.notes,
                       validate: (String value) {
                         if (value.isEmpty) {
                           return 'notes must not be empty';
@@ -247,7 +248,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
                       fillColor: false,
-                      baseName: 'Status',
+                      baseName: AppLocalizations.of(context)!.status,
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           iconSize: 35,
@@ -255,11 +256,11 @@ class AddStudentScreenScreen extends StatelessWidget {
                           iconDisabledColor: Colors.teal,
                           value: cubit.selectedStatus,
                           items: List.generate(
-                            cubit.statusList.length,
+                            cubit.getStatus(context).length,
                             (index) => DropdownMenuItem<String>(
-                              value: cubit.statusList[index],
+                              value: cubit.getStatus(context)[index],
                               child: Text(
-                                cubit.statusList[index],
+                                cubit.getStatus(context)[index],
                                 style: const TextStyle(
                                   color: Colors.teal,
                                   fontWeight: FontWeight.bold,
@@ -311,7 +312,7 @@ class AddStudentScreenScreen extends StatelessWidget {
                                 cubit.addNewStudent();
                               },
                               child: Text(
-                                'Save',
+                                AppLocalizations.of(context)!.saveStudent,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall!

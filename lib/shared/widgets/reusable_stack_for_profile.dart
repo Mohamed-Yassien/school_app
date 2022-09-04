@@ -36,7 +36,7 @@ class ReusableStackForProfile extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 50,
+            top: 40,
             left: 50,
             right: 50,
             child: Column(
@@ -55,8 +55,7 @@ class ReusableStackForProfile extends StatelessWidget {
                             CircleAvatar(
                               radius: 50,
                               backgroundColor: Colors.grey[300],
-                              backgroundImage:
-                                   AssetImage(imagePath),
+                              backgroundImage: AssetImage(imagePath),
                             ),
                             const SizedBox(
                               height: 10,
@@ -73,7 +72,7 @@ class ReusableStackForProfile extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                 icon,
+                                  icon,
                                   size: 18,
                                   color: defaultColor,
                                 ),

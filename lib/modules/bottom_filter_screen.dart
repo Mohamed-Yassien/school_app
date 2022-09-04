@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:school_app/cubit/school_cubit/cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
 
 class BottomFilter extends StatelessWidget {
@@ -20,9 +21,9 @@ class BottomFilter extends StatelessWidget {
               color: Colors.transparent,
               width: 2,
             ),
-            color: Colors.teal.shade400,
+            color: Colors.teal.shade300,
           ),
-          height: 250,
+          height: 270,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -60,7 +61,7 @@ class BottomFilter extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                'instructor :   ',
+                                AppLocalizations.of(context)!.instructor,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!
@@ -149,7 +150,7 @@ class BottomFilter extends StatelessWidget {
                                       ),
                                     ),
                                     child: Text(
-                                      cubit.fromDateController,
+                                      cubit.fromDateController ?? AppLocalizations.of(context)!.from,
                                       style: const TextStyle(
                                         color: Colors.teal,
                                         fontWeight: FontWeight.bold,
@@ -159,9 +160,9 @@ class BottomFilter extends StatelessWidget {
                                   onTap: () {
                                     showDatePicker(
                                       context: context,
-                                      initialDate: DateTime.now(),
+                                      initialDate: cubit.fromDate ?? DateTime.now(),
                                       firstDate: DateTime(1990),
-                                      lastDate: DateTime.now(),
+                                      lastDate: DateTime(2030),
                                     ).then(
                                       (dateValue) {
                                         if (dateValue != null) {
@@ -211,7 +212,7 @@ class BottomFilter extends StatelessWidget {
                                     onTap: () {
                                       showDatePicker(
                                         context: context,
-                                        initialDate: DateTime.now(),
+                                        initialDate: cubit.toDate ?? DateTime.now(),
                                         firstDate: DateTime(1990),
                                         lastDate: DateTime(2025),
                                       ).then(
@@ -240,29 +241,30 @@ class BottomFilter extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                OutlinedButton(
-                  clipBehavior: Clip.hardEdge,
-                  onPressed: () {
-                    Navigator.pop(context);
-                    cubit.filterCoursesWithDates();
-                  },
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 15,
-                      horizontal: 25,
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: OutlinedButton(
+                    clipBehavior: Clip.hardEdge,
+                    onPressed: () {
+                      Navigator.pop(context);
+                      cubit.filterCoursesWithDates();
+                    },
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.white,
                     ),
-                    child: Text(
-                      'OK',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal,
-                        fontSize: 16,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 15,
+                        horizontal: 25,
+                      ),
+                      child: Text(
+                        AppLocalizations.of(context)!.ok,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.teal,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ),

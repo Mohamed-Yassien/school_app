@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../constants.dart';
 
@@ -31,7 +32,7 @@ class ReusableAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
       ),
       title: Text(
-        'PROFILE',
+        AppLocalizations.of(context)!.profile,
         style: Theme.of(context).textTheme.bodyText1?.copyWith(
               color: Colors.white,
               fontSize: 22,

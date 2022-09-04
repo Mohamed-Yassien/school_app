@@ -12,17 +12,8 @@ class ReusableCalenderDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return CalendarDatePicker2(
       selectableDayPredicate: (date) {
-        // try {
-        //   for (var date in dates) {
-        //     return true;
-        //   }
-        //   return false;
-        // } catch (e) {
-        //   print(e.toString());
-        // }
         return false;
       },
-
       config: CalendarDatePicker2Config(
         calendarType: CalendarDatePicker2Type.multi,
         calendarViewMode: DatePickerMode.day,

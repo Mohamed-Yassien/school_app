@@ -5,6 +5,7 @@ import 'package:school_app/cubit/school_cubit/states.dart';
 import 'package:school_app/models/courses_model.dart';
 import 'package:school_app/shared/widgets/reusable_divider.dart';
 import 'package:school_app/shared/widgets/sfcalender.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CourseDetailScreen extends StatelessWidget {
   final Courses course;
@@ -37,7 +38,7 @@ class CourseDetailScreen extends StatelessWidget {
             padding: const EdgeInsets.only(
               left: 12.0,
               right: 12,
-              top: 30,
+              top: 20,
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -88,17 +89,15 @@ class CourseDetailScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                 const ReusableDivider(),
+                  const ReusableDivider(),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      bottom: 25,
-                    ),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(10, 20, 0, 15),
                     child: Text(
-                      'COURSE DATES ',
+                      AppLocalizations.of(context)!.courseDates,
                       style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          // fontWeight: FontWeight.bold,
-                          // fontSize: 18,
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 20,
                           ),
                     ),
                   ),

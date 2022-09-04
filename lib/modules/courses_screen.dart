@@ -4,6 +4,7 @@ import 'package:school_app/modules/bottom_filter_screen.dart';
 import 'package:school_app/modules/course_detail_screen.dart';
 import 'package:school_app/shared/methods.dart';
 import 'package:school_app/shared/widgets/reusable_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../cubit/school_cubit/cubit.dart';
 import '../cubit/school_cubit/states.dart';
@@ -36,12 +37,12 @@ class _CoursesScreenState extends State<CoursesScreen> {
                   },
                   label: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Icon(
+                    children:  [
+                      const Icon(
                         Icons.filter_alt,
                         size: 15,
                       ),
-                      Text('Filter'),
+                      Text(AppLocalizations.of(context)!.filterData),
                     ],
                   ),
                 ),
@@ -77,7 +78,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                             secondText:
                                 '${cubit.coursesWithoutFilter![index].instructor}',
                             trailingText:
-                                '${'${cubit.coursesWithoutFilter![index].numberOfLectures}'} lec',
+                                '${'${cubit.coursesWithoutFilter![index].numberOfLectures}'} ${AppLocalizations.of(context)!.lecture}',
                             onCardTap: () {
                               navigateTo(
                                 widget: CourseDetailScreen(

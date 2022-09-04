@@ -14,6 +14,7 @@ import 'package:school_app/modules/subjects_screen.dart';
 import 'package:school_app/network/endpoints.dart';
 import 'package:school_app/network/remote/dio_helper.dart';
 import 'package:school_app/shared/widgets/reusable_toast.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SchoolCubit extends Cubit<SchoolStates> {
   SchoolCubit() : super(SchoolInitialState());
@@ -34,12 +35,15 @@ class SchoolCubit extends Cubit<SchoolStates> {
     SubjectsScreen(),
   ];
 
-  List<String> titles = [
-    'Students',
-    'Instructors',
-    'Courses',
-    'Subjects',
-  ];
+  List<String> getTitles(context) {
+    var titles = [
+      AppLocalizations.of(context)!.students,
+      AppLocalizations.of(context)!.instructors,
+      AppLocalizations.of(context)!.courses,
+      AppLocalizations.of(context)!.subjects,
+    ];
+    return titles;
+  }
 
   StudentsModel? studentsModel;
 
@@ -56,7 +60,14 @@ class SchoolCubit extends Cubit<SchoolStates> {
   }
 
   String? selectedStatus;
-  List<String> statusList = ['Approved', 'Suspended'];
+
+  List<String> getStatus(context) {
+    var statusList = [
+      AppLocalizations.of(context)!.approved,
+      AppLocalizations.of(context)!.suspended,
+    ];
+    return statusList;
+  }
 
   changeStatusName(String value) {
     selectedStatus = value;
@@ -236,12 +247,12 @@ class SchoolCubit extends Cubit<SchoolStates> {
         : coursesWithDatesFilter;
     selectedInstructor = null;
     emit(CloseFilterCoursesListWithInstructorName());
-    if(fromDate != null && toDate != null){
+    if (fromDate != null && toDate != null) {
       filterCoursesWithDates();
     }
   }
 
-  String fromDateController = 'From';
+  String? fromDateController;
   DateTime? fromDate;
   DateTime? toDate = DateTime.now();
   String toDateController = DateFormat.yMd().format(DateTime.now());
@@ -258,7 +269,6 @@ class SchoolCubit extends Cubit<SchoolStates> {
   }
 
   filterCoursesWithDates() {
-
     if (fromDate != null && selectedInstructor == null) {
       coursesWithDatesFilter = [];
       for (Courses courses in coursesModel!.courses!) {
@@ -287,8 +297,7 @@ class SchoolCubit extends Cubit<SchoolStates> {
         coursesWithoutFilter = coursesWithDatesFilter;
         emit(FilterCoursesListWithDates());
       }
-    } else if (fromDate != null &&
-        selectedInstructor != null) {
+    } else if (fromDate != null && selectedInstructor != null) {
       coursesWithDatesFilter = [];
       for (Courses courses in coursesWithInstructorNameFilter) {
         print('in instructor list');
@@ -329,9 +338,8 @@ class SchoolCubit extends Cubit<SchoolStates> {
     fromDateController = 'From';
     toDateController = DateFormat.yMd().format(DateTime.now());
     emit(CloseFilterCoursesListWithDates());
-    if(selectedInstructor != null){
+    if (selectedInstructor != null) {
       filterCoursesListWithInstructorName(selectedInstructor!);
     }
   }
 }
-

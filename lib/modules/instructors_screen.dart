@@ -5,6 +5,7 @@ import 'package:school_app/cubit/school_cubit/states.dart';
 import 'package:school_app/modules/instructor_detail_screen.dart';
 import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/widgets/reusable_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../shared/methods.dart';
 
@@ -44,7 +45,7 @@ class InstructorsScreen extends StatelessWidget {
                         secondText: cubit.instructorsModel!.instructors![index]
                             .contractType!,
                         trailingText:
-                            '${cubit.instructorsModel?.instructors?[index].salary} \$',
+                            '${cubit.instructorsModel?.instructors?[index].salary} ${AppLocalizations.of(context)!.moneyType}',
                         onCardTap: () {
                           navigateTo(
                               widget: InstructorDetailsScreen(

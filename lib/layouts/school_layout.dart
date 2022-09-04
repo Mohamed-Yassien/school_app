@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
+import 'package:school_app/main.dart';
+import 'package:school_app/models/language_model.dart';
 import 'package:school_app/modules/add_student_screen.dart';
+import 'package:school_app/network/local/cache_helper.dart';
 import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/methods.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../cubit/school_cubit/cubit.dart';
 
@@ -20,30 +24,69 @@ class SchoolLayOut extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              cubit.titles[cubit.currentIndex],
+              cubit.getTitles(context)[cubit.currentIndex],
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     color: defaultColor,
                     fontWeight: FontWeight.bold,
                   ),
             ),
             actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: IconButton(
-                    onPressed: () {
-                      if (cubit.currentIndex == 0)
-                      {
-                        navigateTo(
-                          widget: const AddStudentScreenScreen(),
-                          context: context,
-                        );
-                      }
-                    },
-                    icon: const Icon(Icons.add),
-                    iconSize: 35,
-                    color: defaultColor,
-                  ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 15, 0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        if (cubit.currentIndex == 0) {
+                          navigateTo(
+                            widget: const AddStudentScreenScreen(),
+                            context: context,
+                          );
+                        }
+                      },
+                      icon: const Icon(Icons.add),
+                      iconSize: 35,
+                      color: defaultColor,
+                    ),
+                    DropdownButtonHideUnderline(
+                      child: DropdownButton<LanguageModel>(
+                          iconSize: 30,
+                          iconEnabledColor: defaultColor,
+                          iconDisabledColor: defaultColor,
+                          icon: const Icon(Icons.language),
+                          items: List.generate(
+                            LanguageModel.languages().length,
+                            (index) => DropdownMenuItem<LanguageModel>(
+                              value: LanguageModel.languages()[index],
+                              child: Text(
+                                LanguageModel.languages()[index].name,
+                                style: const TextStyle(
+                                  color: Colors.teal,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          onChanged: (val) async {
+                            if (val != null) {
+                              CacheHelper.saveData(
+                                      key: 'lang', value: val.languageCode)
+                                  .then(
+                                (value) {
+                                  MyApp.setLocale(
+                                    context,
+                                    Locale(
+                                        CacheHelper.getData(key: 'lang'), ''),
+                                  );
+                                },
+                              );
+                            }
+                          }),
+                    ),
+                  ],
                 ),
+              ),
             ],
           ),
           body: cubit.screens[cubit.currentIndex],
@@ -52,30 +95,30 @@ class SchoolLayOut extends StatelessWidget {
               cubit.changeBottomNavIndex(index);
             },
             currentIndex: cubit.currentIndex,
-            items: const [
+            items: [
               BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   Icons.person,
                 ),
-                label: 'Students',
+                label: AppLocalizations.of(context)!.students,
               ),
               BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   Icons.accessibility_new_rounded,
                 ),
-                label: 'Instructors',
+                label: AppLocalizations.of(context)!.instructors,
               ),
               BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   Icons.book,
                 ),
-                label: 'Courses',
+                label: AppLocalizations.of(context)!.courses,
               ),
               BottomNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
                   Icons.layers_clear_sharp,
                 ),
-                label: 'Subjects',
+                label: AppLocalizations.of(context)!.subjects,
               ),
             ],
           ),

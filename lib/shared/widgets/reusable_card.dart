@@ -50,7 +50,7 @@ class ReusableCard extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Align(
-                      alignment: Alignment.centerLeft,
+                      alignment: AlignmentDirectional.center,
                       child: Container(
                         height: 80,
                         width: 90,
@@ -70,10 +70,11 @@ class ReusableCard extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(width: 10,),
                   Expanded(
                     flex: 4,
                     child: Align(
-                      alignment: Alignment.centerLeft,
+                      alignment: AlignmentDirectional.centerStart,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -106,7 +107,7 @@ class ReusableCard extends StatelessWidget {
                     flex: 2,
                     child: Align(
                       alignment:
-                          isStudent ? Alignment.centerLeft : Alignment.center,
+                          isStudent ? AlignmentDirectional.centerStart : AlignmentDirectional.center,
                       child: Text(
                         trailingText,
                         textAlign: TextAlign.start,

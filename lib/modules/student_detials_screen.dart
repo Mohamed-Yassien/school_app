@@ -4,6 +4,7 @@ import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/widgets/resuable_row_for_details.dart';
 import 'package:school_app/shared/widgets/reusable_app_bar.dart';
 import 'package:school_app/shared/widgets/reusable_stack_for_profile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StudentDetailsScreen extends StatelessWidget {
   final Students students;
@@ -22,7 +23,8 @@ class StudentDetailsScreen extends StatelessWidget {
             ReusableStackForProfile(
               icon: Icons.person,
               name: students.name!,
-              secondName: '${students.age!} years',
+              secondName:
+                  '${students.age!} ${AppLocalizations.of(context)!.year}',
               imagePath: 'assets/images/student.jpg',
             ),
             Padding(
@@ -34,7 +36,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'phone',
+                      baseName: AppLocalizations.of(context)!.fPhone,
                       child: Text(
                         '${students.firstPhone}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
@@ -46,7 +48,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'phone',
+                      baseName: AppLocalizations.of(context)!.sPhone,
                       child: Text(
                         '${students.secondPhone}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
@@ -58,7 +60,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'sitting number',
+                      baseName: AppLocalizations.of(context)!.sittingNumber,
                       child: Text(
                         '${students.sittingNumber}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
@@ -70,7 +72,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'class room',
+                      baseName: AppLocalizations.of(context)!.classRoom,
                       child: Text(
                         '${students.classroom}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
@@ -82,31 +84,7 @@ class StudentDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'class room',
-                      child: Text(
-                        '${students.classroom}',
-                        style: Theme.of(context).textTheme.subtitle2?.copyWith(
-                              color: defaultColor,
-                            ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: reusableRowForTaskDetails(
-                      baseName: 'class room',
-                      child: Text(
-                        '${students.classroom}',
-                        style: Theme.of(context).textTheme.subtitle2?.copyWith(
-                              color: defaultColor,
-                            ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: reusableRowForTaskDetails(
-                      baseName: 'national id',
+                      baseName: AppLocalizations.of(context)!.nationalId,
                       child: Text(
                         '${students.studentNationalId}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(

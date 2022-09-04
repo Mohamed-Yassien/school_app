@@ -5,6 +5,7 @@ import 'package:school_app/layouts/school_layout.dart';
 import 'package:school_app/network/local/cache_helper.dart';
 import 'package:school_app/network/remote/dio_helper.dart';
 import 'package:school_app/shared/themes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'cubit/bloc_observer.dart';
 
@@ -19,8 +20,26 @@ main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, Locale locale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(locale);
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? userLocale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      userLocale = locale;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +54,10 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         debugShowCheckedModeBanner: false,
+        locale: Locale(CacheHelper.getData(key: 'lang') ?? 'en', ''),
         theme: lightTheme,
         home: const SchoolLayOut(),
       ),

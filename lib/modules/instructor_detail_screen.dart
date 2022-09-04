@@ -3,6 +3,7 @@ import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/widgets/resuable_row_for_details.dart';
 import 'package:school_app/shared/widgets/reusable_app_bar.dart';
 import 'package:school_app/shared/widgets/reusable_stack_for_profile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../models/instructors_model.dart';
 
@@ -35,9 +36,9 @@ class InstructorDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'salary',
+                      baseName: AppLocalizations.of(context)!.salary,
                       child: Text(
-                        '${instructors.salary} \$',
+                        '${instructors.salary} ${AppLocalizations.of(context)!.moneyType}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
                               color: defaultColor,
                             ),
@@ -47,7 +48,7 @@ class InstructorDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'phone',
+                      baseName: AppLocalizations.of(context)!.fPhone,
                       child: Text(
                         '${instructors.firstPhone}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
@@ -59,7 +60,7 @@ class InstructorDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'phone',
+                      baseName: AppLocalizations.of(context)!.sPhone,
                       child: Text(
                         '${instructors.secondPhone}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
@@ -71,7 +72,7 @@ class InstructorDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'salary type',
+                      baseName: AppLocalizations.of(context)!.salaryType,
                       child: Text(
                         '${instructors.salaryType}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
@@ -83,7 +84,7 @@ class InstructorDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: reusableRowForTaskDetails(
-                      baseName: 'contract type',
+                      baseName: AppLocalizations.of(context)!.contractType,
                       child: Text(
                         '${instructors.contractType}',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
