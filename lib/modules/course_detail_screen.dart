@@ -20,6 +20,9 @@ class CourseDetailScreen extends StatelessWidget {
     return BlocConsumer<SchoolCubit, SchoolStates>(
       listener: (context, state) {},
       builder: (context, state) {
+
+        var cubit = SchoolCubit.get(context);
+
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
@@ -114,6 +117,19 @@ class CourseDetailScreen extends StatelessWidget {
                           ),
                         ),
                         dateTime: course.dates!,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                    ),
+                    child: Center(
+                      child: OutlinedButton(
+                        onPressed: () {
+
+                        },
+                        child: const Text('Enroll'),
                       ),
                     ),
                   ),

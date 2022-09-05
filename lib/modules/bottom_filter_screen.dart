@@ -150,7 +150,8 @@ class BottomFilter extends StatelessWidget {
                                       ),
                                     ),
                                     child: Text(
-                                      cubit.fromDateController ?? AppLocalizations.of(context)!.from,
+                                      cubit.fromDateController ??
+                                          AppLocalizations.of(context)!.from,
                                       style: const TextStyle(
                                         color: Colors.teal,
                                         fontWeight: FontWeight.bold,
@@ -160,7 +161,8 @@ class BottomFilter extends StatelessWidget {
                                   onTap: () {
                                     showDatePicker(
                                       context: context,
-                                      initialDate: cubit.fromDate ?? DateTime.now(),
+                                      initialDate:
+                                          cubit.fromDate ?? DateTime.now(),
                                       firstDate: DateTime(1990),
                                       lastDate: DateTime(2030),
                                     ).then(
@@ -212,7 +214,8 @@ class BottomFilter extends StatelessWidget {
                                     onTap: () {
                                       showDatePicker(
                                         context: context,
-                                        initialDate: cubit.toDate ?? DateTime.now(),
+                                        initialDate:
+                                            cubit.toDate ?? DateTime.now(),
                                         firstDate: DateTime(1990),
                                         lastDate: DateTime(2025),
                                       ).then(
@@ -241,7 +244,6 @@ class BottomFilter extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: OutlinedButton(
