@@ -32,6 +32,12 @@
     "contractType": "contract type",
     "moneyType": "$",
     "lecture": "lec",
-    "from": "From"
-
+    "from": "From",
+    "lang": "Lang",
+    "let_start": "LET'S GET STARTED TO LEARN",
+    "login_admin": "Admin",
+    "login_instructor": " Instructor",
+    "login_student": "Student",
+    "login": "Login",
+    "password": "password"
 }

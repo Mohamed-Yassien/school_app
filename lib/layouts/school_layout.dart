@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
-import 'package:school_app/main.dart';
-import 'package:school_app/models/language_model.dart';
 import 'package:school_app/modules/add_student_screen.dart';
-import 'package:school_app/network/local/cache_helper.dart';
 import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/methods.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:school_app/shared/widgets/language_change_drop.dart';
 
 import '../cubit/school_cubit/cubit.dart';
 
@@ -26,8 +24,9 @@ class SchoolLayOut extends StatelessWidget {
             title: Text(
               cubit.getTitles(context)[cubit.currentIndex],
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    color: defaultColor,
+                    color: Colors.teal,
                     fontWeight: FontWeight.bold,
+                fontSize: 20,
                   ),
             ),
             actions: [
@@ -45,44 +44,13 @@ class SchoolLayOut extends StatelessWidget {
                         }
                       },
                       icon: const Icon(Icons.add),
-                      iconSize: 35,
-                      color: defaultColor,
+                      iconSize: 25,
+                      color: Colors.teal,
                     ),
-                    DropdownButtonHideUnderline(
-                      child: DropdownButton<LanguageModel>(
-                          iconSize: 30,
-                          iconEnabledColor: defaultColor,
-                          iconDisabledColor: defaultColor,
-                          icon: const Icon(Icons.language),
-                          items: List.generate(
-                            LanguageModel.languages().length,
-                            (index) => DropdownMenuItem<LanguageModel>(
-                              value: LanguageModel.languages()[index],
-                              child: Text(
-                                LanguageModel.languages()[index].name,
-                                style: const TextStyle(
-                                  color: Colors.teal,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          onChanged: (val) async {
-                            if (val != null) {
-                              CacheHelper.saveData(
-                                      key: 'lang', value: val.languageCode)
-                                  .then(
-                                (value) {
-                                  MyApp.setLocale(
-                                    context,
-                                    Locale(
-                                        CacheHelper.getData(key: 'lang'), ''),
-                                  );
-                                },
-                              );
-                            }
-                          }),
+                    const SizedBox(width: 25,),
+                    LanguageChangeDrop(
+                      margin: 0,
+                      fillColor: Colors.white,
                     ),
                   ],
                 ),

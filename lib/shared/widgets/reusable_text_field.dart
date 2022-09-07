@@ -16,6 +16,7 @@ class ReusableTextField extends StatelessWidget {
   final TextInputType type;
   final bool inRating;
   final Function onChange;
+  final Color fillColor;
 
   ReusableTextField({
     required this.controller,
@@ -32,7 +33,9 @@ class ReusableTextField extends StatelessWidget {
     this.inRating = false,
     required this.onChange,
     this.initialValue,
+    this.fillColor = Colors.white,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,7 @@ class ReusableTextField extends StatelessWidget {
       controller: controller,
       textAlign: TextAlign.start,
       keyboardType: type,
+      cursorColor: color ?? defaultColor,
       style: TextStyle(
         fontSize: 16,
         color: color ?? defaultColor,
@@ -68,7 +72,7 @@ class ReusableTextField extends StatelessWidget {
             style: BorderStyle.solid,
           ),
         ),
-        fillColor: Colors.white,
+        fillColor: fillColor,
         filled: true,
       ),
       obscureText: isPassword,

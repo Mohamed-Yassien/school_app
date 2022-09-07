@@ -10,7 +10,7 @@ Widget reusableButton({
 }) {
   return Container(
     decoration: BoxDecoration(
-        color: defaultColor,
+        color: Colors.teal,
       borderRadius: BorderRadius.circular(radius)
     ),
     width: width,

@@ -16,7 +16,6 @@ import 'package:school_app/network/remote/dio_helper.dart';
 import 'package:school_app/shared/widgets/reusable_toast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../services/global_notification.dart';
 import '../../services/local_notification_service.dart';
 
 class SchoolCubit extends Cubit<SchoolStates> {
@@ -346,22 +345,7 @@ class SchoolCubit extends Cubit<SchoolStates> {
     }
   }
 
-  //
-  // void initializedNotification() async {
-  //   await LocalNotificationService.initialize();
-  // }
-  //
-  // void showNotification() {
-  //   LocalNotificationService.show(
-  //     scheduledDate: DateTime.now().add(
-  //       const Duration(seconds: 5),
-  //     ),
-  //   ).then((value) {}).catchError((error) {
-  //     print(error.toString());
-  //   });
-  // }
-
-  setUpNotification(context) {
-    GlobalNotification.instance.setupNotification(context);
+  initNotification() async {
+    await LocalNotificationService.initialize();
   }
 }

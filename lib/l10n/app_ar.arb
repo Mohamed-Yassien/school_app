@@ -32,5 +32,12 @@
     "contractType": "نوع العقد",
     "moneyType": "جنية",
     "lecture": "محاضرات",
-    "from": "من"
+    "from": "من",
+    "lang": "اللغة",
+    "let_start": " هيا بنا نبدا لنتعلم ",
+     "login_admin": "ادمن",
+     "login_instructor": " محاضر",
+     "login_student": "طالب",
+     "login": "تسجيل",
+     "password": "كلمة المرور"
 }

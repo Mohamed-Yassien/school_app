@@ -1,7 +1,9 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class LocalNotificationService {
   static final localNotificationService = FlutterLocalNotificationsPlugin();
+  static FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   static Future<void> initialize() async {
     localNotificationService
@@ -9,7 +11,7 @@ class LocalNotificationService {
             AndroidFlutterLocalNotificationsPlugin>()
         ?.requestPermission();
     AndroidInitializationSettings androidInitializationSettings =
-        const AndroidInitializationSettings('@mipmap/ic_launcher');
+        const AndroidInitializationSettings('school');
 
     IOSInitializationSettings iosInitializationSettings =
         const IOSInitializationSettings(
@@ -28,6 +30,23 @@ class LocalNotificationService {
 
     await localNotificationService.initialize(settings,
         onSelectNotification: onSelectNotification);
+
+    messaging.setForegroundNotificationPresentationOptions(
+        alert: true, badge: true, sound: true);
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      showNotification(message);
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+    });
+    FirebaseMessaging.onBackgroundMessage(
+      _firebaseMessagingBackgroundHandler,
+    );
+  }
+
+  static Future<void> _firebaseMessagingBackgroundHandler(
+      RemoteMessage message) async {
+    print("Handling a background message: ${message.messageId}");
   }
 
   static Future<NotificationDetails> localNotificationDetails() async {
@@ -35,7 +54,10 @@ class LocalNotificationService {
         const AndroidNotificationDetails(
       'channel_id',
       'channel_name',
+      icon: 'school',
+      largeIcon: DrawableResourceAndroidBitmap('school'),
       playSound: true,
+      enableVibration: true,
       priority: Priority.max,
       importance: Importance.max,
     );
@@ -47,61 +69,13 @@ class LocalNotificationService {
     );
   }
 
-  static Future<void> showNotification() async {
+  static Future<void> showNotification(RemoteMessage message) async {
     final details = await localNotificationDetails();
     await localNotificationService.show(
-      0,
-      'xTracker got your location in the background',
-      'This app can always access your location in the background!',
+      DateTime.now().microsecond,
+      message.notification!.title,
+      message.notification!.body,
       details,
-    );
-  }
-
-  static Future<void> showScheduleNotification() async {
-    final details = await localNotificationDetails();
-    await localNotificationService.periodicallyShow(
-      0,
-      'xTracker got your location in the background',
-      'This app can always access your location in the background!',
-      RepeatInterval.daily,
-      details,
-    );
-  }
-
-  static Future<void> show({
-    required DateTime scheduledDate,
-  }) async {
-    final details = await localNotificationDetails();
-    await localNotificationService.schedule(
-        0, 'title', 'body', scheduledDate, details);
-  }
-
-  static Future stylishNotification() async {
-    var android = const AndroidNotificationDetails(
-      "id",
-      "channel",
-      // color: Colors.deepOrange,
-      // enableLights: true,
-      enableVibration: true,
-      largeIcon: DrawableResourceAndroidBitmap(
-        "logo",
-      ),
-      // tag: '@mipmap/logo',
-      // ticker: '@mipmap/logo',
-      // icon: '@mipmap/logo',
-      styleInformation: MediaStyleInformation(
-        htmlFormatContent: true,
-        htmlFormatTitle: true,
-      ),
-    );
-
-    var platform = NotificationDetails(android: android);
-
-    await localNotificationService.show(
-      0,
-      'xTracker got your location in the background',
-      'This app can always access your location in the background!',
-      platform,
     );
   }
 
