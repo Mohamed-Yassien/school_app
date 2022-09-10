@@ -26,7 +26,7 @@
     "filterData": "Filter",
     "from": "From",
     "ok": "OK",
-    "instructor": "instructor:  ",
+    "instructor": "instructor :  ",
     "salary": "salary",
     "salaryType": "salary type",
     "contractType": "contract type",
@@ -44,5 +44,9 @@
     "email_empty": "email must not be empty",
     "password_empty": "password must not be empty",
     "national_id_empty": "national id must not be empty",
-    "profile": "Profile"
+    "profile": "Profile",
+    "course_desc": "Course Description",
+    "num_of_lec": "Number Of Lectures",
+    "first_date_section": "First Section Date",
+    "subscribe": "SUBSCRIBE"
 }

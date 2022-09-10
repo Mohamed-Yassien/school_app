@@ -25,18 +25,16 @@ class ReusableAppBarForProfile extends StatelessWidget
               fontSize: 20,
             ),
       ),
-      leading: IconButton(
-        onPressed: () {},
-        icon: const Icon(
-          Icons.logout_outlined,
-          color: Colors.white,
-          size: 25,
-        ),
-        tooltip: 'log out',
-      ),
-      centerTitle: true,
       actions: [
-        LanguageChangeDrop(),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.logout_outlined,
+            color: Colors.white,
+            size: 25,
+          ),
+          tooltip: 'log out',
+        ),
       ],
     );
   }

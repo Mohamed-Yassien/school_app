@@ -29,8 +29,8 @@ class BottomFilter extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: 20.0,
-                    right: 20,
+                    left: 10.0,
+                    right: 10,
                     top: 20,
                   ),
                   child: Row(
@@ -62,42 +62,48 @@ class BottomFilter extends StatelessWidget {
                             children: [
                               Text(
                                 AppLocalizations.of(context)!.instructor,
-                                style: Theme.of(context)
+                                style: Theme
+                                    .of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .caption!
                                     .copyWith(
-                                      color: Colors.teal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
+                                  color: Colors.teal,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
                               ),
-                              if(cubit.instructorsModel!.instructors!.isNotEmpty )
+                              if (cubit
+                                  .instructorsModel!.instructors!.isNotEmpty)
                                 Expanded(
                                   child: DropdownButtonHideUnderline(
                                     child: DropdownButton<String>(
-                                      iconSize: 30,
+                                      iconSize: 25,
                                       iconEnabledColor: Colors.teal,
                                       iconDisabledColor: Colors.teal,
                                       value: cubit.selectedInstructor,
                                       items: List.generate(
                                         cubit.instructorsNames!.length,
-                                        (index) => DropdownMenuItem<String>(
-                                          value: cubit.instructorsNames![index],
-                                          child: Text(
-                                            cubit.instructorsNames![index],
-                                            style: const TextStyle(
-                                              color: Colors.teal,
-                                              fontWeight: FontWeight.normal,
-                                              fontSize: 14,
+                                            (index) =>
+                                            DropdownMenuItem<String>(
+                                              value: cubit
+                                                  .instructorsNames![index],
+                                              child: Text(
+                                                cubit.instructorsNames![index],
+                                                style: const TextStyle(
+                                                  color: Colors.teal,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontSize: 12,
+                                                ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.right,
+                                              ),
                                             ),
-                                            textAlign: TextAlign.right,
-                                          ),
-                                        ),
                                       ),
                                       onChanged: (val) {
                                         cubit.changeInstructorName(val!);
                                       },
-                                      isExpanded: false,
+                                      isExpanded: true,
                                       alignment: Alignment.centerLeft,
                                     ),
                                   ),
@@ -111,25 +117,22 @@ class BottomFilter extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: 12,
-                    right: 18,
+                    left: 10,
+                    right: 10,
                   ),
                   child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: CircleAvatar(
-                          radius: 16,
-                          backgroundColor: Colors.white,
-                          child: IconButton(
-                            onPressed: () {
-                              cubit.closeDatesFilter();
-                            },
-                            icon: const Icon(
-                              Icons.clear,
-                              color: Colors.teal,
-                              size: 16,
-                            ),
+                      CircleAvatar(
+                        radius: 16,
+                        backgroundColor: Colors.white,
+                        child: IconButton(
+                          onPressed: () {
+                            cubit.closeDatesFilter();
+                          },
+                          icon: const Icon(
+                            Icons.clear,
+                            color: Colors.teal,
+                            size: 16,
                           ),
                         ),
                       ),
@@ -163,11 +166,11 @@ class BottomFilter extends StatelessWidget {
                                     showDatePicker(
                                       context: context,
                                       initialDate:
-                                          cubit.fromDate ?? DateTime.now(),
+                                      cubit.fromDate ?? DateTime.now(),
                                       firstDate: DateTime(1990),
                                       lastDate: DateTime(2030),
                                     ).then(
-                                      (dateValue) {
+                                          (dateValue) {
                                         if (dateValue != null) {
                                           cubit.fromDate = dateValue;
                                           print(cubit.fromDate.toString());
@@ -216,11 +219,11 @@ class BottomFilter extends StatelessWidget {
                                       showDatePicker(
                                         context: context,
                                         initialDate:
-                                            cubit.toDate ?? DateTime.now(),
+                                        cubit.toDate ?? DateTime.now(),
                                         firstDate: DateTime(1990),
                                         lastDate: DateTime(2025),
                                       ).then(
-                                        (dateValue) {
+                                            (dateValue) {
                                           if (dateValue != null) {
                                             cubit.toDate = dateValue;
                                             print(cubit.toDate.toString());
@@ -248,7 +251,7 @@ class BottomFilter extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: OutlinedButton(
-                    clipBehavior: Clip.hardEdge,
+                    clipBehavior: Clip.antiAlias,
                     onPressed: () {
                       Navigator.pop(context);
                       cubit.filterCoursesWithDates();
@@ -258,7 +261,7 @@ class BottomFilter extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                        vertical: 15,
+                        vertical: 10,
                         horizontal: 25,
                       ),
                       child: Text(

@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         locale: Locale(CacheHelper.getData(key: 'lang') ?? 'en', ''),
         theme: lightTheme,
-        home: const WelcomeScreen(),
+        home: const StudentLayout(),
       ),
     );
   }

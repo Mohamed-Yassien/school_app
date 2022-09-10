@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/modules/bottom_filter_screen.dart';
 import 'package:school_app/modules/course_detail_screen.dart';
 import 'package:school_app/shared/methods.dart';
+import 'package:school_app/shared/widgets/language_change_drop.dart';
 import 'package:school_app/shared/widgets/reusable_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -26,7 +27,17 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
         var cubit = SchoolCubit.get(context);
 
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: Text(
+              'ALL  COURSES',
+              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    color: defaultColor,
+                  ),
+            ),
+            actions: [
+              LanguageChangeDrop(),
+            ],
+          ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
               if (cubit.coursesModel!.courses!.isEmpty ||

@@ -9,8 +9,13 @@ ThemeData darkTheme = ThemeData(
   textTheme: const TextTheme(
     bodyText1: TextStyle(
       color: Colors.white,
-      fontWeight: FontWeight.w600,
-      fontSize: 17,
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+    ),
+    caption: TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.w200,
+      fontSize: 12,
     ),
   ),
   scaffoldBackgroundColor: HexColor(
@@ -49,8 +54,13 @@ ThemeData lightTheme = ThemeData(
   textTheme: const TextTheme(
     bodyText1: TextStyle(
       color: Colors.black,
-      fontWeight: FontWeight.w600,
-      fontSize: 17,
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+    ),
+    caption: TextStyle(
+      color: Colors.grey,
+      fontWeight: FontWeight.w200,
+      fontSize: 12,
     ),
   ),
   scaffoldBackgroundColor: Colors.white,
@@ -63,12 +73,12 @@ ThemeData lightTheme = ThemeData(
     ),
     titleTextStyle: TextStyle(
       color: Colors.black,
-      fontSize: 22,
+      fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
     iconTheme: IconThemeData(
       color: Colors.black,
-      size: 25,
+      size: 24,
     ),
     elevation: 0,
   ),

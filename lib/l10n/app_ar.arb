@@ -44,5 +44,9 @@
       "email_empty": "البريد الالكتروني مطلوب",
       "password_empty": "كلمة المرور مطلوبة",
       "national_id_empty": "الرقم القومي مطلوب",
-      "profile": "الملف الشخصي"
+      "profile": "الملف الشخصي",
+      "course_desc": "وصف الكورس ",
+      "num_of_lec": "عدد المحاضرات",
+      "first_date_section": "تاريخ اول محاضرة",
+      "subscribe": "اشتراك"
 }
