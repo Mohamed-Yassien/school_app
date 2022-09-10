@@ -5,7 +5,7 @@ import 'package:school_app/shared/widgets/reusable_app_bar.dart';
 import 'package:school_app/shared/widgets/reusable_stack_for_profile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../models/instructors_model.dart';
+import '../../models/instructors_model.dart';
 
 class InstructorDetailsScreen extends StatelessWidget {
   final Instructors instructors;

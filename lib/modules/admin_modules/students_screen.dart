@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/cubit/school_cubit/cubit.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
-import 'package:school_app/modules/student_detials_screen.dart';
+import 'package:school_app/modules/admin_modules/student_detials_screen.dart';
 import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/methods.dart';
 import 'package:school_app/shared/widgets/reusable_card.dart';
@@ -24,7 +24,7 @@ class StudentsScreen extends StatelessWidget {
             : cubit.studentsModel!.students!.isEmpty
                 ? Center(
                     child: Text(
-                      'no students ! start add some..',
+                      'no students !!',
                       style: Theme.of(context).textTheme.subtitle2?.copyWith(
                             color: defaultColor,
                             fontWeight: FontWeight.bold,

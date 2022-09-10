@@ -4,8 +4,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:school_app/shared/constants.dart';
 
 ThemeData darkTheme = ThemeData(
-  primarySwatch:Colors.teal,
-  // fontFamily: 'Lemonada',
+  primarySwatch: Colors.teal,
+  fontFamily: 'Kanit',
   textTheme: const TextTheme(
     bodyText1: TextStyle(
       color: Colors.white,
@@ -45,7 +45,7 @@ ThemeData darkTheme = ThemeData(
 
 ThemeData lightTheme = ThemeData(
   primarySwatch: Colors.teal,
-  // fontFamily: 'Lemonada',
+  fontFamily: 'Kanit',
   textTheme: const TextTheme(
     bodyText1: TextStyle(
       color: Colors.black,
@@ -72,7 +72,7 @@ ThemeData lightTheme = ThemeData(
     ),
     elevation: 0,
   ),
-  bottomNavigationBarTheme:  BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
     elevation: 20,
     selectedItemColor: Colors.teal,
     backgroundColor: Colors.white,

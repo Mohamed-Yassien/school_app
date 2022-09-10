@@ -53,3 +53,13 @@ class CloseFilterCoursesListWithDates extends SchoolStates {}
 class ChangeFromDateContainerValueState extends SchoolStates {}
 
 class ChangeToDateContainerValueState extends SchoolStates {}
+
+///////////////////////////////////////////////////////////////////////
+// student part
+
+class SchoolChangeStudentBottomNavState extends SchoolStates {}
+
+/////////////////////////////////////////////////////////////////////////
+// Instructor Part
+
+class SchoolChangeInstructorBottomNavState extends SchoolStates {}

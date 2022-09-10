@@ -20,9 +20,6 @@ class CourseDetailScreen extends StatelessWidget {
     return BlocConsumer<SchoolCubit, SchoolStates>(
       listener: (context, state) {},
       builder: (context, state) {
-
-        var cubit = SchoolCubit.get(context);
-
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
@@ -126,9 +123,7 @@ class CourseDetailScreen extends StatelessWidget {
                     ),
                     child: Center(
                       child: OutlinedButton(
-                        onPressed: () {
-
-                        },
+                        onPressed: () {},
                         child: const Text('Enroll'),
                       ),
                     ),

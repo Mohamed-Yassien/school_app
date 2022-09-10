@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:school_app/modules/login_screen.dart';
+import 'package:school_app/modules/admin_modules/admin_login_screen.dart';
+import 'package:school_app/modules/student_modules/student_login_screen.dart';
 import 'package:school_app/shared/methods.dart';
 import 'package:school_app/shared/widgets/language_change_drop.dart';
 
 import '../shared/widgets/reusable_material_button_for_choice.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'instructor_modules/instructor_login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -37,20 +40,18 @@ class WelcomeScreen extends StatelessWidget {
               color: Colors.teal,
             ),
           ),
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 20,
-                  horizontal: 30,
-                ),
-                child: Text(
-                  AppLocalizations.of(context)!.let_start,
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
-                        color: Colors.teal,
-                        fontSize: 22,
-                      ),
-                ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 30,
+              ),
+              child: Text(
+                AppLocalizations.of(context)!.let_start,
+                style: Theme.of(context).textTheme.headline6!.copyWith(
+                      color: Colors.teal,
+                      fontSize: 22,
+                    ),
               ),
             ),
           ),
@@ -62,7 +63,7 @@ class WelcomeScreen extends StatelessWidget {
               text: AppLocalizations.of(context)!.login_admin,
               onPress: () {
                 navigateTo(
-                  widget: const LoginScreen(),
+                  widget: const AdminLoginScreen(),
                   context: context,
                 );
               },
@@ -71,13 +72,23 @@ class WelcomeScreen extends StatelessWidget {
           Expanded(
             child: ReusableMaterialButtonForChoice(
               text: AppLocalizations.of(context)!.login_instructor,
-              onPress: () {},
+              onPress: () {
+                navigateTo(
+                  widget: const InstructorLoginScreen(),
+                  context: context,
+                );
+              },
             ),
           ),
           Expanded(
             child: ReusableMaterialButtonForChoice(
               text: AppLocalizations.of(context)!.login_student,
-              onPress: () {},
+              onPress: () {
+                navigateTo(
+                  widget: const StudentLoginScreen(),
+                  context: context,
+                );
+              },
             ),
           ),
           Expanded(

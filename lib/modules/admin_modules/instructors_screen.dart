@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/cubit/school_cubit/cubit.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
-import 'package:school_app/modules/instructor_detail_screen.dart';
+import 'package:school_app/modules/admin_modules/instructor_detail_screen.dart';
 import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/widgets/reusable_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../shared/methods.dart';
+import '../../shared/methods.dart';
 
 class InstructorsScreen extends StatelessWidget {
   const InstructorsScreen({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class InstructorsScreen extends StatelessWidget {
             : cubit.instructorsModel!.instructors!.isEmpty
                 ? Center(
                     child: Text(
-                      'no instructors ! start add some..',
+                      'no instructors !!',
                       style: Theme.of(context).textTheme.subtitle2?.copyWith(
                             color: defaultColor,
                             fontWeight: FontWeight.bold,

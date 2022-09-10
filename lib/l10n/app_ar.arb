@@ -39,5 +39,10 @@
      "login_instructor": " محاضر",
      "login_student": "طالب",
      "login": "تسجيل",
-     "password": "كلمة المرور"
+     "password": "كلمة المرور",
+      "email": "البريد الالكتروني",
+      "email_empty": "البريد الالكتروني مطلوب",
+      "password_empty": "كلمة المرور مطلوبة",
+      "national_id_empty": "الرقم القومي مطلوب",
+      "profile": "الملف الشخصي"
 }

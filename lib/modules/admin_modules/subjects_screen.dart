@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/shared/widgets/reusable_card.dart';
 
-import '../cubit/school_cubit/cubit.dart';
-import '../cubit/school_cubit/states.dart';
-import '../shared/constants.dart';
+import '../../cubit/school_cubit/cubit.dart';
+import '../../cubit/school_cubit/states.dart';
+import '../../shared/constants.dart';
 
 class SubjectsScreen extends StatelessWidget {
   const SubjectsScreen({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class SubjectsScreen extends StatelessWidget {
             : cubit.subjectsModel!.subjects!.isEmpty
                 ? Center(
                     child: Text(
-                      'no subjects ! start add some..',
+                      'no subjects !!',
                       style: Theme.of(context).textTheme.subtitle2?.copyWith(
                             color: defaultColor,
                             fontWeight: FontWeight.bold,
@@ -37,10 +37,12 @@ class SubjectsScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ReusableCard(
                         imageUrl: 'assets/images/subject.jpg',
-                        baseText: cubit.subjectsModel!.subjects![index].subject!,
-                        secondText: cubit.subjectsModel!.subjects![index].description!,
+                        baseText:
+                            cubit.subjectsModel!.subjects![index].subject!,
+                        secondText:
+                            cubit.subjectsModel!.subjects![index].description!,
                         trailingText: '',
-                        onCardTap: (){},
+                        onCardTap: () {},
                       );
                     },
                     separatorBuilder: (context, index) {

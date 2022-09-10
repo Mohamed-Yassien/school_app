@@ -6,18 +6,18 @@ import 'package:school_app/shared/methods.dart';
 import 'package:school_app/shared/widgets/reusable_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../cubit/school_cubit/cubit.dart';
-import '../cubit/school_cubit/states.dart';
-import '../shared/constants.dart';
+import '../../cubit/school_cubit/cubit.dart';
+import '../../cubit/school_cubit/states.dart';
+import '../../shared/constants.dart';
 
-class CoursesScreen extends StatefulWidget {
-  const CoursesScreen({Key? key}) : super(key: key);
+class StudentHomeScreen extends StatefulWidget {
+  const StudentHomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<CoursesScreen> createState() => _CoursesScreenState();
+  State<StudentHomeScreen> createState() => _StudentHomeScreenState();
 }
 
-class _CoursesScreenState extends State<CoursesScreen> {
+class _StudentHomeScreenState extends State<StudentHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SchoolCubit, SchoolStates>(
@@ -26,6 +26,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
         var cubit = SchoolCubit.get(context);
 
         return Scaffold(
+          appBar: AppBar(),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
               if (cubit.coursesModel!.courses!.isEmpty ||

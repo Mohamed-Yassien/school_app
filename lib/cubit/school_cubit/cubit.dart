@@ -8,14 +8,19 @@ import 'package:school_app/models/student_data_model.dart';
 import 'package:school_app/models/students_model.dart';
 import 'package:school_app/models/subjects_model.dart';
 import 'package:school_app/modules/courses_screen.dart';
-import 'package:school_app/modules/instructors_screen.dart';
-import 'package:school_app/modules/students_screen.dart';
-import 'package:school_app/modules/subjects_screen.dart';
+import 'package:school_app/modules/admin_modules/instructors_screen.dart';
+import 'package:school_app/modules/admin_modules/students_screen.dart';
+import 'package:school_app/modules/admin_modules/subjects_screen.dart';
+import 'package:school_app/modules/student_modules/student_home_screen.dart';
 import 'package:school_app/network/endpoints.dart';
+import 'package:school_app/network/local/cache_helper.dart';
 import 'package:school_app/network/remote/dio_helper.dart';
 import 'package:school_app/shared/widgets/reusable_toast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../modules/instructor_modules/instructor_home_screen.dart';
+import '../../modules/instructor_modules/instructor_profile.dart';
+import '../../modules/student_modules/student_profile_screen.dart';
 import '../../services/local_notification_service.dart';
 
 class SchoolCubit extends Cubit<SchoolStates> {
@@ -348,4 +353,54 @@ class SchoolCubit extends Cubit<SchoolStates> {
   initNotification() async {
     await LocalNotificationService.initialize();
   }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////
+  // student part
+
+  int studentNavCurrentIndex = 0;
+
+  changeStudentBottomNavIndex(int index) {
+    studentNavCurrentIndex = index;
+    if (index == 1) {
+      getCurrentStudent(
+        CacheHelper.getData(key: 'currentStudentId'),
+      );
+    }
+    emit(SchoolChangeStudentBottomNavState());
+  }
+
+  List<Widget> studentScreens = const [
+    StudentHomeScreen(),
+    StudentProfileScreen(),
+  ];
+
+  Students? currentStudent;
+
+  getCurrentStudent(int id) {
+    currentStudent = studentsModel?.students?.firstWhere(
+      (element) => element.id == id,
+    );
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Instructor Part
+
+  int instructorNavCurrentIndex = 0;
+
+  changeInstructorBottomNavIndex(int index) {
+    instructorNavCurrentIndex = index;
+    // if (index == 1) {
+    //   getCurrentStudent(
+    //     CacheHelper.getData(key: 'currentStudentId'),
+    //   );
+    // }
+    emit(SchoolChangeInstructorBottomNavState());
+  }
+
+  List<Widget> instructorScreens = const [
+    InstructorHomeScreen(),
+    InstructorProfileScreen(),
+  ];
 }

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
-import 'package:school_app/modules/add_student_screen.dart';
-import 'package:school_app/shared/constants.dart';
+import 'package:school_app/modules/admin_modules/add_student_screen.dart';
 import 'package:school_app/shared/methods.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:school_app/shared/widgets/language_change_drop.dart';
 
 import '../cubit/school_cubit/cubit.dart';
 
-class SchoolLayOut extends StatelessWidget {
-  const SchoolLayOut({Key? key}) : super(key: key);
+class AdminLayout extends StatelessWidget {
+  const AdminLayout({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class SchoolLayOut extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     color: Colors.teal,
                     fontWeight: FontWeight.bold,
-                fontSize: 20,
+                    fontSize: 20,
                   ),
             ),
             actions: [
@@ -47,7 +46,9 @@ class SchoolLayOut extends StatelessWidget {
                       iconSize: 25,
                       color: Colors.teal,
                     ),
-                    const SizedBox(width: 25,),
+                    const SizedBox(
+                      width: 25,
+                    ),
                     LanguageChangeDrop(
                       margin: 0,
                       fillColor: Colors.white,

@@ -39,5 +39,10 @@
     "login_instructor": " Instructor",
     "login_student": "Student",
     "login": "Login",
-    "password": "password"
+    "password": "password",
+    "email": "Email",
+    "email_empty": "email must not be empty",
+    "password_empty": "password must not be empty",
+    "national_id_empty": "national id must not be empty",
+    "profile": "Profile"
 }

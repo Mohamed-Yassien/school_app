@@ -71,36 +71,37 @@ class BottomFilter extends StatelessWidget {
                                       fontSize: 16,
                                     ),
                               ),
-                              Expanded(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    iconSize: 30,
-                                    iconEnabledColor: Colors.teal,
-                                    iconDisabledColor: Colors.teal,
-                                    value: cubit.selectedInstructor,
-                                    items: List.generate(
-                                      cubit.instructorsNames!.length,
-                                      (index) => DropdownMenuItem<String>(
-                                        value: cubit.instructorsNames![index],
-                                        child: Text(
-                                          cubit.instructorsNames![index],
-                                          style: const TextStyle(
-                                            color: Colors.teal,
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 14,
+                              if(cubit.instructorsModel!.instructors!.isNotEmpty )
+                                Expanded(
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton<String>(
+                                      iconSize: 30,
+                                      iconEnabledColor: Colors.teal,
+                                      iconDisabledColor: Colors.teal,
+                                      value: cubit.selectedInstructor,
+                                      items: List.generate(
+                                        cubit.instructorsNames!.length,
+                                        (index) => DropdownMenuItem<String>(
+                                          value: cubit.instructorsNames![index],
+                                          child: Text(
+                                            cubit.instructorsNames![index],
+                                            style: const TextStyle(
+                                              color: Colors.teal,
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 14,
+                                            ),
+                                            textAlign: TextAlign.right,
                                           ),
-                                          textAlign: TextAlign.right,
                                         ),
                                       ),
+                                      onChanged: (val) {
+                                        cubit.changeInstructorName(val!);
+                                      },
+                                      isExpanded: false,
+                                      alignment: Alignment.centerLeft,
                                     ),
-                                    onChanged: (val) {
-                                      cubit.changeInstructorName(val!);
-                                    },
-                                    isExpanded: false,
-                                    alignment: Alignment.centerLeft,
                                   ),
                                 ),
-                              ),
                             ],
                           ),
                         ),
