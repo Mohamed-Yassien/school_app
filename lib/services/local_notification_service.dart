@@ -11,7 +11,7 @@ class LocalNotificationService {
             AndroidFlutterLocalNotificationsPlugin>()
         ?.requestPermission();
     AndroidInitializationSettings androidInitializationSettings =
-        const AndroidInitializationSettings('school');
+        const AndroidInitializationSettings('@mipmap/ic_launcher');
 
     IOSInitializationSettings iosInitializationSettings =
         const IOSInitializationSettings(
@@ -54,8 +54,8 @@ class LocalNotificationService {
         const AndroidNotificationDetails(
       'channel_id',
       'channel_name',
-      icon: 'school',
-      largeIcon: DrawableResourceAndroidBitmap('school'),
+      // icon: 'school',
+      // largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
       playSound: true,
       enableVibration: true,
       priority: Priority.max,

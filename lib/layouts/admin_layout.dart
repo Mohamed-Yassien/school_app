@@ -85,10 +85,16 @@ class AdminLayout extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: const Icon(
-                  Icons.layers_clear_sharp,
+                  Icons.next_plan_outlined,
                 ),
-                label: AppLocalizations.of(context)!.subjects,
+                label: AppLocalizations.of(context)!.plans,
               ),
+              // BottomNavigationBarItem(
+              //   icon: const Icon(
+              //     Icons.layers_clear_sharp,
+              //   ),
+              //   label: AppLocalizations.of(context)!.subjects,
+              // ),
             ],
           ),
         );

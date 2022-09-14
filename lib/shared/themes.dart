@@ -59,8 +59,8 @@ ThemeData lightTheme = ThemeData(
     ),
     caption: TextStyle(
       color: Colors.grey,
-      fontWeight: FontWeight.w200,
-      fontSize: 12,
+      fontWeight: FontWeight.w100,
+      fontSize: 13,
     ),
   ),
   scaffoldBackgroundColor: Colors.white,

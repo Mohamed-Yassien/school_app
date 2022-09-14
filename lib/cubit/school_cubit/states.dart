@@ -54,6 +54,18 @@ class ChangeFromDateContainerValueState extends SchoolStates {}
 
 class ChangeToDateContainerValueState extends SchoolStates {}
 
+class SchoolGetPlansLoadingState extends SchoolStates {}
+
+class SchoolGetPlansSuccessState extends SchoolStates {}
+
+class SchoolGetPlansErrorState extends SchoolStates {}
+
+class SchoolGetPlanByIdLoadingState extends SchoolStates {}
+
+class SchoolGetPlanByIdSuccessState extends SchoolStates {}
+
+class SchoolGetPlanByIdErrorState extends SchoolStates {}
+
 ///////////////////////////////////////////////////////////////////////
 // student part
 

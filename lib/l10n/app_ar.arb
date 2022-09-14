@@ -3,6 +3,7 @@
     "instructors": "المحاضرين",
     "courses": "الكورسات",
     "subjects": "المواد",
+    "plans": "الخطط",
     "addStudent": "اضافة طالب",
     "studentName": "اسم الطالب",
     "studentAge": "سن الطالب",
@@ -48,5 +49,11 @@
       "course_desc": "وصف الكورس ",
       "num_of_lec": "عدد المحاضرات",
       "first_date_section": "تاريخ اول محاضرة",
-      "subscribe": "اشتراك"
+      "subscribe": "اشتراك",
+          "course_title": "اسم الكورس",
+          "course_price": "سعر الكورس",
+          "course_coupon": "ادخل كود الخصم",
+          "course_discount": "قيمة الخصم",
+          "course_price_discount": "السعر بعد الخصم",
+          "payment": "الدفع"
 }

@@ -4,16 +4,17 @@ import 'package:intl/intl.dart';
 import 'package:school_app/cubit/school_cubit/states.dart';
 import 'package:school_app/models/courses_model.dart';
 import 'package:school_app/models/instructors_model.dart';
+import 'package:school_app/models/plan_by_id_model.dart';
+import 'package:school_app/models/plans_model.dart';
 import 'package:school_app/models/student_data_model.dart';
 import 'package:school_app/models/students_model.dart';
 import 'package:school_app/models/subjects_model.dart';
+import 'package:school_app/modules/admin_modules/plans_screen.dart';
 import 'package:school_app/modules/courses_screen.dart';
 import 'package:school_app/modules/admin_modules/instructors_screen.dart';
 import 'package:school_app/modules/admin_modules/students_screen.dart';
-import 'package:school_app/modules/admin_modules/subjects_screen.dart';
 import 'package:school_app/modules/student_modules/student_home_screen.dart';
 import 'package:school_app/network/endpoints.dart';
-import 'package:school_app/network/local/cache_helper.dart';
 import 'package:school_app/network/remote/dio_helper.dart';
 import 'package:school_app/shared/widgets/reusable_toast.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,7 +40,8 @@ class SchoolCubit extends Cubit<SchoolStates> {
     StudentsScreen(),
     InstructorsScreen(),
     CoursesScreen(),
-    SubjectsScreen(),
+    PlansScreen(),
+    // SubjectsScreen(),
   ];
 
   List<String> getTitles(context) {
@@ -47,7 +49,7 @@ class SchoolCubit extends Cubit<SchoolStates> {
       AppLocalizations.of(context)!.students,
       AppLocalizations.of(context)!.instructors,
       AppLocalizations.of(context)!.courses,
-      AppLocalizations.of(context)!.subjects,
+      AppLocalizations.of(context)!.plans,
     ];
     return titles;
   }
@@ -295,10 +297,11 @@ class SchoolCubit extends Cubit<SchoolStates> {
                 coursesWithDatesFilter.add(courses);
                 print('go on');
               }
-            } else {
-              print('go out');
-              coursesWithDatesFilter = [];
             }
+            // else {
+            //   print('go out');
+            //   coursesWithDatesFilter = [];
+            // }
           }
         }
         coursesWithoutFilter = coursesWithDatesFilter;
@@ -324,10 +327,11 @@ class SchoolCubit extends Cubit<SchoolStates> {
                 coursesWithDatesFilter.add(courses);
                 print('go on');
               }
-            } else {
-              print('go out');
-              coursesWithDatesFilter = [];
             }
+            // else {
+            //   print('go out');
+            //   coursesWithDatesFilter = [];
+            // }
           }
         }
         coursesWithoutFilter = coursesWithDatesFilter;
@@ -350,6 +354,34 @@ class SchoolCubit extends Cubit<SchoolStates> {
     }
   }
 
+  PlansModel? plansModel;
+
+  getPlans() async {
+    emit(SchoolGetPlansLoadingState());
+    DioHelper.getData(url: GET_PLANS).then((value) {
+      plansModel = PlansModel.fromJson(value.data);
+      print(plansModel?.plans?[0].startDate);
+      emit(SchoolGetPlansSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(SchoolGetPlansErrorState());
+    });
+  }
+
+  PlanByIdModel? planByIdModel;
+
+  getPlanById(int id) async {
+    emit(SchoolGetPlanByIdLoadingState());
+    DioHelper.getData(url: '$GET_PLAN_BY_ID$id').then((value) {
+      planByIdModel = PlanByIdModel.fromJson(value.data);
+      print(planByIdModel?.planName);
+      emit(SchoolGetPlanByIdSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(SchoolGetPlanByIdErrorState());
+    });
+  }
+
   initNotification() async {
     await LocalNotificationService.initialize();
   }
@@ -364,7 +396,8 @@ class SchoolCubit extends Cubit<SchoolStates> {
     studentNavCurrentIndex = index;
     if (index == 1) {
       getCurrentStudent(
-        CacheHelper.getData(key: 'currentStudentId'),
+        // CacheHelper.getData(key: 'currentStudentId') ?? 1,
+        1,
       );
     }
     emit(SchoolChangeStudentBottomNavState());

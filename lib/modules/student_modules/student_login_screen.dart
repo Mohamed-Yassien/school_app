@@ -26,10 +26,10 @@ class StudentLoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
           if (state is StudentLoginSuccessState) {
-            navigateToAndFinish(
-              widget: const StudentLayout(),
-              context: context,
-            );
+            // navigateToAndFinish(
+            //   widget: const StudentLayout(),
+            //   context: context,
+            // );
           }
         },
         builder: (context, state) {
@@ -139,13 +139,17 @@ class StudentLoginScreen extends StatelessWidget {
                                   : reusableButton(
                                       text: AppLocalizations.of(context)!.login,
                                       function: () {
-                                        if (formKey.currentState!.validate()) {
-                                          cubit.studentLogin(
-                                            nationalId:
-                                                nationalIdController.text,
-                                            password: passwordController.text,
-                                          );
-                                        }
+                                        // if (formKey.currentState!.validate()) {
+                                        //   cubit.studentLogin(
+                                        //     nationalId:
+                                        //         nationalIdController.text,
+                                        //     password: passwordController.text,
+                                        //   );
+                                        // }
+                                        navigateToAndFinish(
+                                          widget: const StudentLayout(),
+                                          context: context,
+                                        );
                                       },
                                       radius: 5,
                                     ),

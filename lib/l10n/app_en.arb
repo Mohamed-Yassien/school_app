@@ -3,6 +3,7 @@
     "instructors": "Instructors",
     "courses": "Courses",
     "subjects": "Subjects",
+    "plans": "Plans",
     "addStudent": "Add Student",
     "studentName": "student name",
     "studentAge": "student age",
@@ -48,5 +49,11 @@
     "course_desc": "Course Description",
     "num_of_lec": "Number Of Lectures",
     "first_date_section": "First Section Date",
-    "subscribe": "SUBSCRIBE"
+    "subscribe": "SUBSCRIBE",
+    "course_title": "COURSE TITLE",
+    "course_price": "COURSE PRICE",
+    "course_coupon": "ENTER COUPON CODE",
+    "course_discount": "DISCOUNT",
+    "course_price_discount": "PRICE AFTER DISCOUNT",
+    "payment": "PAYMENT"
 }
