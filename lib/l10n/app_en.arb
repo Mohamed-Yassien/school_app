@@ -55,5 +55,8 @@
     "course_coupon": "ENTER COUPON CODE",
     "course_discount": "DISCOUNT",
     "course_price_discount": "PRICE AFTER DISCOUNT",
-    "payment": "PAYMENT"
+    "payment": "PAYMENT",
+    "plan_price": "Plan Price : ",
+    "plan_discount": "Discount For This Plan : ",
+    "plan_available_date": "This Plan Is Available Until : "
 }

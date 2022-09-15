@@ -6,6 +6,9 @@ import 'package:school_app/cubit/school_cubit/states.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:school_app/shared/widgets/reusable_button.dart';
+import 'package:school_app/shared/widgets/reusable_divider.dart';
+
+import '../../shared/widgets/reusable_row_for_plan_details.dart';
 
 class PlanDetailsScreen extends StatelessWidget {
   const PlanDetailsScreen({Key? key}) : super(key: key);
@@ -40,62 +43,72 @@ class PlanDetailsScreen extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             color: Colors.teal,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 25,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '${cubit.planByIdModel?.planName}',
-                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                          color: Colors.white,
-                        ),
-                    textAlign: TextAlign.end,
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Chip(
-                      backgroundColor: Colors.white,
-                      label: Text(
-                        '${cubit.planByIdModel?.price} ${AppLocalizations.of(context)!.moneyType}',
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 10,
                       ),
-                      padding:const EdgeInsets.all(10),
-                      labelStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: Colors.teal,
-                        fontSize: 18,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${cubit.planByIdModel?.planName}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium!
+                                .copyWith(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                            textAlign: TextAlign.start,
+                          ),
+                          // const SizedBox(
+                          //   height: 15,
+                          // ),
+                          const ReusableDivider(),
+                          ReusableRowForPlanDetails(
+                            baseText: AppLocalizations.of(context)!.plan_price,
+                            subText:
+                                '${cubit.planByIdModel?.price} ${AppLocalizations.of(context)!.moneyType}',
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          ReusableRowForPlanDetails(
+                            baseText:
+                                AppLocalizations.of(context)!.plan_discount,
+                            subText: '${cubit.planByIdModel?.discount} %',
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          ReusableRowForPlanDetails(
+                            baseText: AppLocalizations.of(context)!
+                                .plan_available_date,
+                            subText: '${cubit.planByIdModel?.endDate}',
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                        ],
                       ),
                     ),
-                    Chip(
-                      backgroundColor: Colors.white,
-                      label: Text(
-                        '${cubit.planByIdModel?.discount} %',
-                      ),
-                      padding: const EdgeInsets.all(10),
-                      labelStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: Colors.teal,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  reusableButton(
-                    text: AppLocalizations.of(context)!.subscribe,
-                    function: () {},
-                    buttonColor: Colors.white,
-                    radius: 25,
-                  ),
-                ],
-              ),
+                reusableButton(
+                  text: AppLocalizations.of(context)!.subscribe,
+                  function: () {},
+                  buttonColor: Colors.white,
+                  radius: 0,
+                ),
+              ],
             ),
           ),
         );

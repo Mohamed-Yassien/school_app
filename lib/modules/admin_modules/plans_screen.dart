@@ -58,7 +58,8 @@ class PlansScreen extends StatelessWidget {
                                 return InkWell(
                                   onTap: () {
                                     cubit.getPlanById(
-                                        cubit.plansModel!.plans![index].id!);
+                                      cubit.plansModel!.plans![index].id!,
+                                    );
                                   },
                                   child: Card(
                                     elevation: 15,
@@ -71,7 +72,10 @@ class PlansScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 15.0,
+                                        vertical: 20,
+                                      ),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,

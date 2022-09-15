@@ -55,5 +55,8 @@
           "course_coupon": "ادخل كود الخصم",
           "course_discount": "قيمة الخصم",
           "course_price_discount": "السعر بعد الخصم",
-          "payment": "الدفع"
+          "payment": "الدفع",
+              "plan_price": "سعر الخطة : ",
+              "plan_discount": "الخصم الموجود علي هذه الخطة : ",
+              "plan_available_date": "هذه الخطة متاحة حتي : "
 }
