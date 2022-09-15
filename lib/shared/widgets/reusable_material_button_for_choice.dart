@@ -18,7 +18,7 @@ class ReusableMaterialButtonForChoice extends StatelessWidget {
       ),
       // width: double.infinity,
       width: 200,
-      height: 45,
+      height: 60,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(5),
         child: MaterialButton(

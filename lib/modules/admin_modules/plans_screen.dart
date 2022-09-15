@@ -27,7 +27,7 @@ class PlansScreen extends StatelessWidget {
         var cubit = SchoolCubit.get(context);
 
         return Scaffold(
-          body: cubit.coursesModel == null || cubit.coursesWithoutFilter == null
+          body: cubit.plansModel == null
               ? const Center(
                   child: CircularProgressIndicator(),
                 )

@@ -149,14 +149,15 @@ class CourseDetailScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        '${DateFormat.yMd().format(
-                          DateTime.parse(course.firstSectionDate!),
-                        )}     ${DateFormat.jm().format(
-                          DateTime.parse(course.firstSectionDate!),
-                        )}',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
+                      if (course.firstSectionDate != null)
+                        Text(
+                          '${DateFormat.yMd().format(
+                            DateTime.parse(course.firstSectionDate!),
+                          )}     ${DateFormat.jm().format(
+                            DateTime.parse(course.firstSectionDate!),
+                          )}',
+                          style: Theme.of(context).textTheme.caption,
+                        ),
                     ],
                   ),
                   const ReusableDivider(),
@@ -195,10 +196,11 @@ class CourseDetailScreen extends StatelessWidget {
                       text: AppLocalizations.of(context)!.subscribe,
                       function: () {
                         navigateTo(
-                            widget: CoursePaymentScreen(
-                              course: course,
-                            ),
-                            context: context);
+                          widget: CoursePaymentScreen(
+                            course: course,
+                          ),
+                          context: context,
+                        );
                       },
                       radius: 5,
                     ),

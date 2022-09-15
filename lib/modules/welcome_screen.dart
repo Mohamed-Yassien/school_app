@@ -15,6 +15,9 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -28,80 +31,141 @@ class WelcomeScreen extends StatelessWidget {
           LanguageChangeDrop(),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ClipPath(
-            clipper: MyCustomClipper(),
-            child: Container(
-              height: 180,
-              width: double.infinity,
-              color: Colors.teal,
-            ),
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 30,
-              ),
-              child: Text(
-                AppLocalizations.of(context)!.let_start,
-                style: Theme.of(context).textTheme.headline6!.copyWith(
-                      color: Colors.teal,
-                      fontSize: 22,
+      body: width <= 450
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ClipPath(
+                  clipper: MyCustomClipper(),
+                  child: Container(
+                    height: 180,
+                    width: double.infinity,
+                    color: Colors.teal,
+                  ),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 30,
                     ),
-              ),
+                    child: Text(
+                      AppLocalizations.of(context)!.let_start,
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            color: Colors.teal,
+                            fontSize: 22,
+                          ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                Expanded(
+                  child: ReusableMaterialButtonForChoice(
+                    text: AppLocalizations.of(context)!.login_admin,
+                    onPress: () {
+                      navigateTo(
+                        widget: const AdminLoginScreen(),
+                        context: context,
+                      );
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: ReusableMaterialButtonForChoice(
+                    text: AppLocalizations.of(context)!.login_instructor,
+                    onPress: () {
+                      navigateTo(
+                        widget: const InstructorLoginScreen(),
+                        context: context,
+                      );
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: ReusableMaterialButtonForChoice(
+                    text: AppLocalizations.of(context)!.login_student,
+                    onPress: () {
+                      navigateTo(
+                        widget: const StudentLoginScreen(),
+                        context: context,
+                      );
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Image.asset(
+                      'assets/images/login_bottom.png',
+                      color: Colors.teal,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 30,
+                    ),
+                    child: Text(
+                      AppLocalizations.of(context)!.let_start,
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            color: Colors.teal,
+                            fontSize: 22,
+                          ),
+                    ),
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: ReusableMaterialButtonForChoice(
+                        text: AppLocalizations.of(context)!.login_admin,
+                        onPress: () {
+                          navigateTo(
+                            widget: const AdminLoginScreen(),
+                            context: context,
+                          );
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: ReusableMaterialButtonForChoice(
+                        text: AppLocalizations.of(context)!.login_instructor,
+                        onPress: () {
+                          navigateTo(
+                            widget: const InstructorLoginScreen(),
+                            context: context,
+                          );
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: ReusableMaterialButtonForChoice(
+                        text: AppLocalizations.of(context)!.login_student,
+                        onPress: () {
+                          navigateTo(
+                            widget: const StudentLoginScreen(),
+                            context: context,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ),
-          const SizedBox(
-            height: 35,
-          ),
-          Expanded(
-            child: ReusableMaterialButtonForChoice(
-              text: AppLocalizations.of(context)!.login_admin,
-              onPress: () {
-                navigateTo(
-                  widget: const AdminLoginScreen(),
-                  context: context,
-                );
-              },
-            ),
-          ),
-          Expanded(
-            child: ReusableMaterialButtonForChoice(
-              text: AppLocalizations.of(context)!.login_instructor,
-              onPress: () {
-                navigateTo(
-                  widget: const InstructorLoginScreen(),
-                  context: context,
-                );
-              },
-            ),
-          ),
-          Expanded(
-            child: ReusableMaterialButtonForChoice(
-              text: AppLocalizations.of(context)!.login_student,
-              onPress: () {
-                navigateTo(
-                  widget: const StudentLoginScreen(),
-                  context: context,
-                );
-              },
-            ),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Image.asset(
-                'assets/images/login_bottom.png',
-                color: Colors.teal,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
