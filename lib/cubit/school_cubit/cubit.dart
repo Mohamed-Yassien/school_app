@@ -346,7 +346,7 @@ class SchoolCubit extends Cubit<SchoolStates> {
     coursesWithoutFilter = selectedInstructor == null
         ? coursesModel!.courses
         : coursesWithInstructorNameFilter;
-    fromDateController = 'From';
+    fromDateController = null;
     toDateController = DateFormat.yMd().format(DateTime.now());
     emit(CloseFilterCoursesListWithDates());
     if (selectedInstructor != null) {

@@ -32,7 +32,10 @@ class LocalNotificationService {
         onSelectNotification: onSelectNotification);
 
     messaging.setForegroundNotificationPresentationOptions(
-        alert: true, badge: true, sound: true);
+      alert: true,
+      badge: true,
+      sound: true,
+    );
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       showNotification(message);
     });

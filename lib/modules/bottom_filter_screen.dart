@@ -21,7 +21,7 @@ class BottomFilter extends StatelessWidget {
               color: Colors.transparent,
               width: 2,
             ),
-            color: Colors.teal.shade300,
+            color: Colors.teal,
           ),
           height: 270,
           child: SingleChildScrollView(
@@ -62,15 +62,14 @@ class BottomFilter extends StatelessWidget {
                             children: [
                               Text(
                                 AppLocalizations.of(context)!.instructor,
-                                style: Theme
-                                    .of(context)
+                                style: Theme.of(context)
                                     .textTheme
                                     .caption!
                                     .copyWith(
-                                  color: Colors.teal,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                                      color: Colors.teal,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
                               ),
                               if (cubit
                                   .instructorsModel!.instructors!.isNotEmpty)
@@ -83,22 +82,20 @@ class BottomFilter extends StatelessWidget {
                                       value: cubit.selectedInstructor,
                                       items: List.generate(
                                         cubit.instructorsNames!.length,
-                                            (index) =>
-                                            DropdownMenuItem<String>(
-                                              value: cubit
-                                                  .instructorsNames![index],
-                                              child: Text(
-                                                cubit.instructorsNames![index],
-                                                style: const TextStyle(
-                                                  color: Colors.teal,
-                                                  fontWeight: FontWeight.normal,
-                                                  fontSize: 12,
-                                                ),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.right,
-                                              ),
+                                        (index) => DropdownMenuItem<String>(
+                                          value: cubit.instructorsNames![index],
+                                          child: Text(
+                                            cubit.instructorsNames![index],
+                                            style: const TextStyle(
+                                              color: Colors.teal,
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 12,
                                             ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.right,
+                                          ),
+                                        ),
                                       ),
                                       onChanged: (val) {
                                         cubit.changeInstructorName(val!);
@@ -166,11 +163,11 @@ class BottomFilter extends StatelessWidget {
                                     showDatePicker(
                                       context: context,
                                       initialDate:
-                                      cubit.fromDate ?? DateTime.now(),
+                                          cubit.fromDate ?? DateTime.now(),
                                       firstDate: DateTime(1990),
                                       lastDate: DateTime(2030),
                                     ).then(
-                                          (dateValue) {
+                                      (dateValue) {
                                         if (dateValue != null) {
                                           cubit.fromDate = dateValue;
                                           print(cubit.fromDate.toString());
@@ -219,17 +216,18 @@ class BottomFilter extends StatelessWidget {
                                       showDatePicker(
                                         context: context,
                                         initialDate:
-                                        cubit.toDate ?? DateTime.now(),
+                                            cubit.toDate ?? DateTime.now(),
                                         firstDate: DateTime(1990),
                                         lastDate: DateTime(2025),
                                       ).then(
-                                            (dateValue) {
+                                        (dateValue) {
                                           if (dateValue != null) {
                                             cubit.toDate = dateValue;
                                             print(cubit.toDate.toString());
                                             cubit.changeToDateContainerString(
-                                                DateFormat.yMd()
-                                                    .format(dateValue));
+                                              DateFormat.yMd()
+                                                  .format(dateValue),
+                                            );
                                             cubit.filterCoursesWithDates();
                                             // cubit.toDateController =
                                             //     DateFormat.yMd()

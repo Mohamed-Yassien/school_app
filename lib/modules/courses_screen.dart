@@ -32,9 +32,13 @@ class _CoursesScreenState extends State<CoursesScreen> {
                   cubit.instructorsModel!.instructors!.isEmpty) {
                 return;
               } else {
-                Scaffold.of(context).showBottomSheet((context) {
-                  return const BottomFilter();
-                });
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => const BottomFilter(),
+                );
+                // Scaffold.of(context).showBottomSheet((context) {
+                //   return const BottomFilter();
+                // });
               }
             },
             label: Row(

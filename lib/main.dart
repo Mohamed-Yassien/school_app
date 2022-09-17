@@ -55,7 +55,6 @@ class _MyAppState extends State<MyApp> {
           create: (context) => SchoolCubit()
             ..getStudents()
             ..getInstructors()
-            // ..getSubjects()
             ..getCourses()
             ..getPlans()
             ..initNotification(),
