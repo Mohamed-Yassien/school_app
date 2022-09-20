@@ -13,6 +13,7 @@ import 'package:school_app/modules/admin_modules/plans_screen.dart';
 import 'package:school_app/modules/courses_screen.dart';
 import 'package:school_app/modules/admin_modules/instructors_screen.dart';
 import 'package:school_app/modules/admin_modules/students_screen.dart';
+import 'package:school_app/modules/student_modules/contact_screen.dart';
 import 'package:school_app/modules/student_modules/student_home_screen.dart';
 import 'package:school_app/network/endpoints.dart';
 import 'package:school_app/network/remote/dio_helper.dart';
@@ -406,7 +407,9 @@ class SchoolCubit extends Cubit<SchoolStates> {
   List<Widget> studentScreens = const [
     StudentHomeScreen(),
     StudentProfileScreen(),
+    ContactScreen(),
   ];
+
 
   Students? currentStudent;
 

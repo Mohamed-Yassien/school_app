@@ -34,6 +34,12 @@ class StudentLayout extends StatelessWidget {
                 ),
                 label: AppLocalizations.of(context)!.profile,
               ),
+               const BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.contact_phone_rounded,
+                ),
+                label: 'Contact Us',
+              ),
             ],
           ),
         );

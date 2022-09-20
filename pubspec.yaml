@@ -51,6 +51,10 @@ dependencies:
   firebase_core:
   firebase_messaging:
   path_provider:
+  firebase_auth:
+  cloud_firestore:
+  curved_navigation_bar: ^1.0.3
+  lottie:
 
 
 dev_dependencies:
