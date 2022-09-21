@@ -57,5 +57,8 @@
       "payment": "الدفع",
       "plan_price": "سعر الخطة : ",
       "plan_discount": "الخصم الموجود علي هذه الخطة : ",
-      "plan_available_date": "هذه الخطة متاحة حتي : "
+      "plan_available_date": "هذه الخطة متاحة حتي : ",
+      "contact_us": "تواصل معنا",
+       "chat_for_support": "تواصل معنا للمساعدة",
+       "enter_msg_here": "اكتب رسالتك هنا "
 }

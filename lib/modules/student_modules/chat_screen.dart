@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:school_app/shared/widgets/message_bubble.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+
 class ChatScreen extends StatelessWidget {
   const ChatScreen({Key? key}) : super(key: key);
 
@@ -103,13 +106,13 @@ class ChatScreen extends StatelessWidget {
                       controller: messageController,
                       validator: (String? value) {
                         if (value!.isEmpty) {
-                          return 'enter your message';
+                          return '';
                         }
                         return null;
                       },
-                      decoration: const InputDecoration(
-                        hintText: 'Enter Your Message',
-                        hintStyle: TextStyle(
+                      decoration:  InputDecoration(
+                        hintText: AppLocalizations.of(context)!.enter_msg_here,
+                        hintStyle:const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
                         ),

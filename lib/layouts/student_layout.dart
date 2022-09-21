@@ -34,11 +34,11 @@ class StudentLayout extends StatelessWidget {
                 ),
                 label: AppLocalizations.of(context)!.profile,
               ),
-               const BottomNavigationBarItem(
-                icon: Icon(
+                BottomNavigationBarItem(
+                icon:const Icon(
                   Icons.contact_phone_rounded,
                 ),
-                label: 'Contact Us',
+                label: AppLocalizations.of(context)!.contact_us,
               ),
             ],
           ),

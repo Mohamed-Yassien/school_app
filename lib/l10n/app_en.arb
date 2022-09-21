@@ -57,5 +57,8 @@
     "payment": "PAYMENT",
     "plan_price": "Plan Price : ",
     "plan_discount": "Discount For This Plan : ",
-    "plan_available_date": "This Plan Is Available Until : "
+    "plan_available_date": "This Plan Is Available Until : ",
+    "contact_us": "Contact Us",
+    "chat_for_support": "CHAT US FOR SUPPORT",
+    "enter_msg_here": "Enter Your Message Here "
 }
