@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:school_app/modules/student_modules/chat_screen.dart';
 import 'package:school_app/shared/methods.dart';
 
@@ -8,21 +7,41 @@ class ContactScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // void launchWhatsApp({
+    //   @required int? phone,
+    //   @required String? message,
+    // }) async {
+    //   String url() {
+    //     if (Platform.isAndroid) {
+    //       return "https://wa.me/?phone=$phone";
+    //     } else {
+    //       return "whatsapp://send?phone=$phone&text=${Uri.parse(message!)}";
+    //     }
+    //   }
+    //   if (await launchUrl(Uri.directory(url()))) {
+    //     await launch(url());
+    //   } else {
+    //     throw 'Could not launch ${url()}';
+    //   }
+    // }
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        // title: Text(
-        //   'Contact Us',
-        //   style: Theme.of(context).textTheme.headline6!.copyWith(
-        //         color: Colors.teal,
-        //       ),
-        // ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          LottieBuilder.asset(
-            'assets/images/chat.json',
+          // LottieBuilder.asset(
+          //   'assets/images/chat.json',
+          // ),
+          MaterialButton(
+            onPressed: () {
+              // launchWhatsApp(phone: 0101585, message: 'hello');
+            },
+            child: Text(
+              'go to whats',
+            ),
           ),
           const SizedBox(
             height: 30,

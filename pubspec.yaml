@@ -53,8 +53,8 @@ dependencies:
   path_provider:
   firebase_auth:
   cloud_firestore:
-  curved_navigation_bar: ^1.0.3
   lottie:
+  url_launcher: ^6.1.5
 
 
 dev_dependencies:
