@@ -72,12 +72,12 @@ ThemeData lightTheme = ThemeData(
       statusBarIconBrightness: Brightness.dark,
     ),
     titleTextStyle: TextStyle(
-      color: Colors.black,
-      fontSize: 20,
+      color: Colors.teal,
       fontWeight: FontWeight.bold,
+      fontSize: 18,
     ),
     iconTheme: IconThemeData(
-      color: Colors.black,
+      color: Colors.white,
       size: 24,
     ),
     elevation: 0,

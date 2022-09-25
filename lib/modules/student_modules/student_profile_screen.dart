@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:school_app/cubit/school_cubit/cubit.dart';
-import 'package:school_app/cubit/school_cubit/states.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:school_app/cubit/student_cubit/student_cubit.dart';
+import 'package:school_app/cubit/student_cubit/student_states.dart';
 import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/widgets/reusable_app_bar_for_profile.dart';
 
@@ -14,10 +14,10 @@ class StudentProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SchoolCubit, SchoolStates>(
+    return BlocConsumer<StudentCubit, StudentStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = SchoolCubit.get(context);
+        var cubit = StudentCubit.get(context);
 
         return Scaffold(
           appBar: const ReusableAppBarForProfile(),
@@ -43,10 +43,11 @@ class StudentProfileScreen extends StatelessWidget {
                         ),
                         child: Text(
                           'My Courses',
-                          style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            color: defaultColor,
-                            fontSize: 20,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodyText1!.copyWith(
+                                    color: defaultColor,
+                                    fontSize: 20,
+                                  ),
                         ),
                       ),
                     ],

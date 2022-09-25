@@ -23,7 +23,6 @@ class WelcomeScreen extends StatelessWidget {
         backgroundColor: Colors.teal,
         elevation: 0,
         systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarBrightness: Brightness.dark,
           statusBarColor: Colors.teal,
           statusBarIconBrightness: Brightness.light,
         ),

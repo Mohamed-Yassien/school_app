@@ -2,7 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:school_app/cubit/instructor_cubit/instructor_cubit.dart';
+import 'package:school_app/cubit/plans_cubit/plans_cubit.dart';
 import 'package:school_app/cubit/school_cubit/cubit.dart';
+import 'package:school_app/cubit/student_cubit/student_cubit.dart';
 import 'package:school_app/modules/welcome_screen.dart';
 import 'package:school_app/network/local/cache_helper.dart';
 import 'package:school_app/network/remote/dio_helper.dart';
@@ -53,11 +56,17 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(
           create: (context) => SchoolCubit()
-            ..getStudents()
-            ..getInstructors()
             ..getCourses()
-            ..getPlans()
             ..initNotification(),
+        ),
+        BlocProvider(
+          create: (context) => StudentCubit()..getStudents(),
+        ),
+        BlocProvider(
+          create: (context) => InstructorCubit()..getInstructors(),
+        ),
+        BlocProvider(
+          create: (context) => PlansCubit()..getPlans(),
         ),
       ],
       child: MaterialApp(

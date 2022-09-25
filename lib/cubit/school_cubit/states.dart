@@ -4,33 +4,11 @@ class SchoolInitialState extends SchoolStates {}
 
 class SchoolChangeBottomNavState extends SchoolStates {}
 
-class SchoolGetStudentsLoadingState extends SchoolStates {}
-
-class SchoolGetStudentsSuccessState extends SchoolStates {}
-
-class SchoolGetStudentsErrorState extends SchoolStates {}
-
-class ChangeStatusNameInListState extends SchoolStates {}
-
-class AddNewStudentLoadingState extends SchoolStates {}
-
-class AddNewStudentSuccessState extends SchoolStates {}
-
-class AddNewStudentErrorState extends SchoolStates {}
-
-class ClearAllDataState extends SchoolStates {}
-
 class SchoolGetInstructorsLoadingState extends SchoolStates {}
 
 class SchoolGetInstructorsSuccessState extends SchoolStates {}
 
 class SchoolGetInstructorsErrorState extends SchoolStates {}
-
-class SchoolGetSubjectsLoadingState extends SchoolStates {}
-
-class SchoolGetSubjectsSuccessState extends SchoolStates {}
-
-class SchoolGetSubjectsErrorState extends SchoolStates {}
 
 class SchoolGetCoursesLoadingState extends SchoolStates {}
 
@@ -53,23 +31,6 @@ class CloseFilterCoursesListWithDates extends SchoolStates {}
 class ChangeFromDateContainerValueState extends SchoolStates {}
 
 class ChangeToDateContainerValueState extends SchoolStates {}
-
-class SchoolGetPlansLoadingState extends SchoolStates {}
-
-class SchoolGetPlansSuccessState extends SchoolStates {}
-
-class SchoolGetPlansErrorState extends SchoolStates {}
-
-class SchoolGetPlanByIdLoadingState extends SchoolStates {}
-
-class SchoolGetPlanByIdSuccessState extends SchoolStates {}
-
-class SchoolGetPlanByIdErrorState extends SchoolStates {}
-
-///////////////////////////////////////////////////////////////////////
-// student part
-
-class SchoolChangeStudentBottomNavState extends SchoolStates {}
 
 /////////////////////////////////////////////////////////////////////////
 // Instructor Part

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:school_app/cubit/school_cubit/cubit.dart';
-import 'package:school_app/cubit/school_cubit/states.dart';
+import 'package:school_app/cubit/plans_cubit/plans_cubit.dart';
+import 'package:school_app/cubit/plans_cubit/plans_states.dart';
 import 'package:school_app/modules/admin_modules/plan_details_screen.dart';
 import 'package:school_app/shared/methods.dart';
 
@@ -14,9 +14,9 @@ class PlansScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SchoolCubit, SchoolStates>(
+    return BlocConsumer<PlansCubit, PlansStates>(
       listener: (context, state) {
-        if (state is SchoolGetPlanByIdSuccessState) {
+        if (state is GetPlanByIdSuccessState) {
           navigateTo(
             widget: const PlanDetailsScreen(),
             context: context,
@@ -24,14 +24,14 @@ class PlansScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        var cubit = SchoolCubit.get(context);
+        var cubit = PlansCubit.get(context);
 
         return Scaffold(
           body: cubit.plansModel == null
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : cubit.coursesModel!.courses!.isEmpty
+              : cubit.plansModel!.plans!.isEmpty
                   ? Center(
                       child: Text(
                         'no plans !!',

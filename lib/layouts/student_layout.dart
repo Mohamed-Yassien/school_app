@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:school_app/cubit/student_cubit/student_cubit.dart';
+import 'package:school_app/cubit/student_cubit/student_states.dart';
 
-import '../cubit/school_cubit/cubit.dart';
-import '../cubit/school_cubit/states.dart';
 
 class StudentLayout extends StatelessWidget {
   const StudentLayout({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SchoolCubit, SchoolStates>(
+    return BlocConsumer<StudentCubit, StudentStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = SchoolCubit.get(context);
+        var cubit = StudentCubit.get(context);
         return Scaffold(
           body: cubit.studentScreens[cubit.studentNavCurrentIndex],
           bottomNavigationBar: BottomNavigationBar(

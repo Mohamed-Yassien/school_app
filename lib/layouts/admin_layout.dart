@@ -22,11 +22,6 @@ class AdminLayout extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               cubit.getTitles(context)[cubit.currentIndex],
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    color: Colors.teal,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
             ),
             actions: [
               Padding(
@@ -89,12 +84,6 @@ class AdminLayout extends StatelessWidget {
                 ),
                 label: AppLocalizations.of(context)!.plans,
               ),
-              // BottomNavigationBarItem(
-              //   icon: const Icon(
-              //     Icons.layers_clear_sharp,
-              //   ),
-              //   label: AppLocalizations.of(context)!.subjects,
-              // ),
             ],
           ),
         );

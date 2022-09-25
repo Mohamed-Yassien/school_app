@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:school_app/cubit/subject_cubit/subject_cubit.dart';
+import 'package:school_app/cubit/subject_cubit/subject_states.dart';
 import 'package:school_app/shared/widgets/reusable_card.dart';
 
-import '../../cubit/school_cubit/cubit.dart';
-import '../../cubit/school_cubit/states.dart';
 import '../../shared/constants.dart';
 
 class SubjectsScreen extends StatelessWidget {
@@ -11,10 +11,10 @@ class SubjectsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SchoolCubit, SchoolStates>(
+    return BlocConsumer<SubjectCubit, SubjectsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = SchoolCubit.get(context);
+        var cubit = SubjectCubit.get(context);
 
         return cubit.subjectsModel == null
             ? const Center(

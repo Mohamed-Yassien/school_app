@@ -5,7 +5,6 @@ import 'package:school_app/shared/widgets/message_bubble.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class ChatScreen extends StatelessWidget {
   const ChatScreen({Key? key}) : super(key: key);
 
@@ -30,10 +29,12 @@ class ChatScreen extends StatelessWidget {
             },
           )
           .then((value) => print("message Added"))
-          .catchError((error) => print("Failed to add user: $error"));
+          .catchError(
+            (error) => print("Failed to add user: $error"),
+          );
     }
 
-    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+    final Stream<QuerySnapshot> usersStream = FirebaseFirestore.instance
         .collection('chats')
         .doc('MohamedId')
         .collection('messages')
@@ -63,7 +64,7 @@ class ChatScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             StreamBuilder<QuerySnapshot>(
-              stream: _usersStream,
+              stream: usersStream,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return const Center(
@@ -110,9 +111,9 @@ class ChatScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      decoration:  InputDecoration(
+                      decoration: InputDecoration(
                         hintText: AppLocalizations.of(context)!.enter_msg_here,
-                        hintStyle:const TextStyle(
+                        hintStyle: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
                         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:school_app/cubit/school_cubit/cubit.dart';
-import 'package:school_app/cubit/school_cubit/states.dart';
+import 'package:school_app/cubit/student_cubit/student_cubit.dart';
+import 'package:school_app/cubit/student_cubit/student_states.dart';
 import 'package:school_app/shared/constants.dart';
 import 'package:school_app/shared/widgets/resuable_row_for_details.dart';
 import 'package:school_app/shared/widgets/reusable_text_field.dart';
@@ -14,14 +14,14 @@ class AddStudentScreenScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SchoolCubit, SchoolStates>(
+    return BlocConsumer<StudentCubit, StudentStates>(
       listener: (context, state) {
         if (state is AddNewStudentSuccessState) {
           Navigator.pop(context);
         }
       },
       builder: (context, state) {
-        var cubit = SchoolCubit.get(context);
+        var cubit = StudentCubit.get(context);
 
         return Scaffold(
           appBar: AppBar(
