@@ -7,3 +7,6 @@ class GetInstructorsLoadingState extends InstructorStates {}
 class GetInstructorsSuccessState extends InstructorStates {}
 
 class GetInstructorsErrorState extends InstructorStates {}
+
+class ChangeInstructorBottomNavState extends InstructorStates{}
+

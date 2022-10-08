@@ -53,8 +53,8 @@ dependencies:
   path_provider:
   firebase_auth:
   cloud_firestore:
-  lottie:
   url_launcher: ^6.1.5
+  equatable:
 
 
 dev_dependencies:

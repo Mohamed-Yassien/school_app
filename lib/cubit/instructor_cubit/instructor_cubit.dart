@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:school_app/cubit/instructor_cubit/instructor_states.dart';
+import 'package:school_app/modules/instructor_modules/instructor_home_screen.dart';
+import 'package:school_app/modules/instructor_modules/instructor_profile.dart';
 
 import '../../models/instructors_model.dart';
 import '../../network/endpoints.dart';
@@ -13,6 +16,9 @@ class InstructorCubit extends Cubit<InstructorStates> {
   InstructorsModel? instructorsModel;
 
   List<String>? instructorsNames;
+
+  String? selectedInstructor;
+
 
   void getInstructors() {
     emit(GetInstructorsLoadingState());
@@ -31,4 +37,15 @@ class InstructorCubit extends Cubit<InstructorStates> {
     });
   }
 
+  int instructorNavCurrentIndex = 0;
+
+  changeInstructorBottomNavIndex(int index) {
+    instructorNavCurrentIndex = index;
+    emit(ChangeInstructorBottomNavState());
+  }
+
+  List<Widget> instructorScreens = const [
+    InstructorHomeScreen(),
+    InstructorProfileScreen(),
+  ];
 }

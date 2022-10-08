@@ -6,6 +6,7 @@ import 'package:school_app/models/student_model.dart';
 import 'package:school_app/network/endpoints.dart';
 import 'package:school_app/network/local/cache_helper.dart';
 import 'package:school_app/network/remote/dio_helper.dart';
+import 'package:school_app/shared/widgets/reusable_toast.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitialState());
@@ -31,6 +32,10 @@ class LoginCubit extends Cubit<LoginStates> {
       emit(AdminLoginSuccessState());
     }).catchError((error) {
       print(error.toString());
+      showToast(
+        msg: 'invalid information',
+        toastStates: ToastStates.ERROR,
+      );
       emit(AdminLoginErrorState());
     });
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:school_app/cubit/school_cubit/cubit.dart';
-import 'package:school_app/cubit/school_cubit/states.dart';
+import 'package:school_app/cubit/courses_cubit/courses_cubit.dart';
+import 'package:school_app/cubit/courses_cubit/courses_states.dart';
 import 'package:school_app/models/courses_model.dart';
 import 'package:school_app/modules/course_payment_screen.dart';
 import 'package:school_app/shared/methods.dart';
@@ -22,7 +22,7 @@ class CourseDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SchoolCubit, SchoolStates>(
+    return BlocConsumer<CoursesCubit, CoursesStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:school_app/cubit/courses_cubit/courses_cubit.dart';
 import 'package:school_app/cubit/instructor_cubit/instructor_cubit.dart';
 import 'package:school_app/cubit/plans_cubit/plans_cubit.dart';
 import 'package:school_app/cubit/school_cubit/cubit.dart';
@@ -13,6 +14,7 @@ import 'package:school_app/shared/themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'cubit/bloc_observer.dart';
+import 'cubit/contact_cubit/chat_cubit.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,13 +53,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context2) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => SchoolCubit()
-            ..getCourses()
-            ..initNotification(),
+          create: (context) => SchoolCubit()..initNotification(),
         ),
         BlocProvider(
           create: (context) => StudentCubit()..getStudents(),
@@ -67,6 +67,14 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => PlansCubit()..getPlans(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              CoursesCubit(instructorCubit: context.read<InstructorCubit>())
+                ..getCourses(),
+        ),
+        BlocProvider(
+          create: (context) => ChatCubit()..getMessage(),
         ),
       ],
       child: MaterialApp(

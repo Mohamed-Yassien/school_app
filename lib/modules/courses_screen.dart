@@ -1,44 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:school_app/modules/bottom_filter_screen.dart';
+import 'package:school_app/cubit/courses_cubit/courses_cubit.dart';
+import 'package:school_app/cubit/courses_cubit/courses_states.dart';
+import 'package:school_app/modules/bottom_filter_screen_2.dart';
 import 'package:school_app/modules/course_detail_screen.dart';
 import 'package:school_app/shared/methods.dart';
 import 'package:school_app/shared/widgets/reusable_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../cubit/school_cubit/cubit.dart';
-import '../cubit/school_cubit/states.dart';
 import '../shared/constants.dart';
 
-class CoursesScreen extends StatefulWidget {
+class CoursesScreen extends StatelessWidget {
   const CoursesScreen({Key? key}) : super(key: key);
 
   @override
-  State<CoursesScreen> createState() => _CoursesScreenState();
-}
-
-class _CoursesScreenState extends State<CoursesScreen> {
-  @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SchoolCubit, SchoolStates>(
+    return BlocConsumer<CoursesCubit, CoursesStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = SchoolCubit.get(context);
+        var cubit = CoursesCubit.get(context);
 
         return Scaffold(
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
-              if (cubit.coursesModel!.courses!.isEmpty ||
-                  cubit.instructorsModel!.instructors!.isEmpty) {
+              if (cubit.coursesModel!.courses!.isEmpty) {
                 return;
               } else {
                 showModalBottomSheet(
                   context: context,
-                  builder: (context) => const BottomFilter(),
+                  builder: (context) => const BottomFilterScreen2(),
                 );
-                // Scaffold.of(context).showBottomSheet((context) {
-                //   return const BottomFilter();
-                // });
               }
             },
             label: Row(

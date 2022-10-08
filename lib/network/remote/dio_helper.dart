@@ -7,9 +7,9 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'http://school.innovativeideasbox.com/api',
+        baseUrl: 'http://school.innovativeideasbox.com/api/en',
         receiveDataWhenStatusError: true,
-        headers: {'Content-Type': 'application/json'},
+        // headers: {'Content-Type': 'application/json'},
       ),
     );
   }

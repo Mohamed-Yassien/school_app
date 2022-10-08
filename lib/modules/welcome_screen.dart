@@ -45,18 +45,17 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 Center(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 30,
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.let_start,
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
-                            color: Colors.teal,
-                            fontSize: 22,
-                          ),
-                    ),
-                  ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 30,
+                      ),
+                      child: Text(
+                        AppLocalizations.of(context)!.let_start,
+                        style: Theme.of(context).textTheme.headline6!.copyWith(
+                              color: Colors.teal,
+                              fontSize: 22,
+                            ),
+                      )),
                 ),
                 const SizedBox(
                   height: 35,

@@ -26,10 +26,10 @@ class AdminLoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
           if (state is AdminLoginSuccessState) {
-            // navigateToAndFinish(
-            //   widget: const AdminLayout(),
-            //   context: context,
-            // );
+            navigateToAndFinish(
+              widget: const AdminLayout(),
+              context: context,
+            );
           }
         },
         builder: (context, state) {
@@ -139,16 +139,12 @@ class AdminLoginScreen extends StatelessWidget {
                                   : reusableButton(
                                       text: AppLocalizations.of(context)!.login,
                                       function: () {
-                                        // if (formKey.currentState!.validate()) {
-                                        //   cubit.adminLogin(
-                                        //     email: emailController.text,
-                                        //     password: passwordController.text,
-                                        //   );
-                                        // }
-                                        navigateToAndFinish(
-                                          widget: const AdminLayout(),
-                                          context: context,
-                                        );
+                                        if (formKey.currentState!.validate()) {
+                                          cubit.adminLogin(
+                                            email: emailController.text,
+                                            password: passwordController.text,
+                                          );
+                                        }
                                       },
                                       radius: 5,
                                     ),
