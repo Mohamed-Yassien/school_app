@@ -65,8 +65,7 @@ class ChatScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
-                      maxLines: 2,
-
+                      maxLines: 1,
                       controller:
                           BlocProvider.of<ChatCubit>(context).messageController,
                       validator: (String? value) {

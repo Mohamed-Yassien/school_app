@@ -1,40 +1,43 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:school_app/shared/constants.dart';
 
 class ReusableTextField extends StatelessWidget {
-  TextEditingController? controller;
-  String? initialValue;
+ final TextEditingController? controller;
+ final String? initialValue;
   final String textLabel;
   final Color? color;
   final bool isPassword;
   final Function validate;
   final VoidCallback? suffixPressed;
   final VoidCallback? onTap;
-  IconButton? iconData;
-  int? maxLines;
+  final IconButton? iconData;
+ final int? maxLines;
   final Function? onSubmit;
   final TextInputType type;
   final bool inRating;
   final Function onChange;
   final Color fillColor;
 
-  ReusableTextField({
+  const ReusableTextField({
+    Key? key,
     required this.controller,
-    this.isPassword = false,
+    this.initialValue,
     required this.textLabel,
     this.color,
+    this.isPassword = false,
     required this.validate,
-    this.maxLines = 1,
     this.suffixPressed,
     this.onTap,
     this.iconData,
-    required this.type,
+    this.maxLines = 1,
     this.onSubmit,
+    required this.type,
     this.inRating = false,
     required this.onChange,
-    this.initialValue,
     this.fillColor = Colors.white,
-  });
+  }) : super(key: key);
 
 
   @override
