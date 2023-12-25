@@ -12,7 +12,6 @@ import 'package:school_app/network/local/cache_helper.dart';
 import 'package:school_app/network/remote/dio_helper.dart';
 import 'package:school_app/shared/themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'cubit/bloc_observer.dart';
 import 'cubit/contact_cubit/chat_cubit.dart';
 
@@ -21,7 +20,7 @@ main() async {
   await Firebase.initializeApp();
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   var fcmToken = await messaging.getToken();
-  print('token is $fcmToken');
+  debugPrint('token is $fcmToken');
   await CacheHelper.init();
   DioHelper.init();
   Bloc.observer = MyBlocObserver();

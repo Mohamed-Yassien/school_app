@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../constants.dart';
 
-class ReusableAppBar extends StatelessWidget with PreferredSizeWidget {
+class ReusableAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ReusableAppBar({Key? key}) : super(key: key);
 
   @override

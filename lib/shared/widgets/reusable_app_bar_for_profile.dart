@@ -3,10 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../constants.dart';
-import 'language_change_drop.dart';
 
 class ReusableAppBarForProfile extends StatelessWidget
-    with PreferredSizeWidget {
+    implements PreferredSizeWidget {
   const ReusableAppBarForProfile({Key? key}) : super(key: key);
 
   @override

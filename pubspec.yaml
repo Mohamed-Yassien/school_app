@@ -42,11 +42,11 @@ dependencies:
   bloc:
   flutter_bloc:
   shared_preferences:
-  intl: ^0.17.0
-  calendar_date_picker2: ^0.2.3
-  syncfusion_flutter_calendar: ^20.2.46
-  table_calendar: ^3.0.6
-  date_time_picker_widget: ^1.0.1+4
+  intl: 
+  calendar_date_picker2: 
+  syncfusion_flutter_calendar: 
+  table_calendar: 
+  date_time_picker_widget:
   flutter_local_notifications:
   firebase_core:
   firebase_messaging:

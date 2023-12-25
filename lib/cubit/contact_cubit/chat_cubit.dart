@@ -5,7 +5,6 @@ import 'package:school_app/cubit/contact_cubit/chat_states.dart';
 import 'package:school_app/models/message_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class ChatCubit extends Cubit<ChatStates> {
   ChatCubit() : super(ChatInitialState());
 
@@ -31,19 +30,21 @@ class ChatCubit extends Cubit<ChatStates> {
       messageModel.toMap(),
     )
         .then((value) {
-      print("message Added");
+      debugPrint("message Added");
       messageController.clear();
     }).catchError(
-      (error) => print("Failed to add user: $error"),
+      (error) {
+        debugPrint("Failed to add user: $error");
+      },
     );
   }
 
   getMessage() {
-    chats.orderBy('time',descending: true).snapshots().listen(
+    chats.orderBy('time', descending: true).snapshots().listen(
       (event) {
         messages.clear();
         for (var doc in event.docs) {
-          print('doc is $doc');
+          debugPrint('doc is $doc');
           messages.add(MessageModel.fromJson(doc));
         }
         emit(ChatSuccessState());
